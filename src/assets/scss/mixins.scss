@@ -1,0 +1,8 @@
+@mixin fakeImg($w:0,$h:0,$img:'',$size:contain) {
+    content: '';
+    display: inline-block;
+    width: $w;
+    height: $h;
+    background: url($img) no-repeat center;
+    background-size: $size;
+}
