@@ -73,14 +73,60 @@
                         <span>8:00-18:00（仅收市话费)</span>
                     </p>
                     <div class="cheat">
-                        <span class="iconfont"></span>
+                        <span class="iconfont">&#xe658;</span>
                         <span>人工客服</span>
                     </div>
                     <div class="connect">
                         <span>关注小米</span>
-                        <img src="" alt="">
-                        <img src="" alt="">
+                        <a class="wb"/>
+                        <a class="wx"/>
                     </div>
+                </div>
+            </div>
+            <div class="info-text">
+                <p class="sites">
+                    <a href="">小米商城</a><span>|</span><a href="">MIUI</a><span>|</span>
+                    <a href="">米家</a><span>|</span><a href="">米聊</a><span>|</span>
+                    <a href="">多看</a><span>|</span><a href="">游戏</a><span>|</span>
+                    <a href="">政企服务</a><span>|</span><a href="">小米天猫店</a><span>|</span>
+                    <a href="">小米集团隐私政策</a><span>|</span><a href="">小米儿童信息保护规则</a><span>|</span>
+                    <a href="">小米商城隐私政策</a><span>|</span><a href="">小米商城用户协议</a><span>|</span>
+                    <a href="">问题反馈</a><span>|</span><a href="">Select Location</a>
+                </p>
+                <p class="info-detail">
+                    <span>©</span>
+                    <a href=""> mi.com </a>
+                    <span> 京ICP证110507号 </span>
+                    <a href=""> 京ICP备10046444号 </a>
+                    <a href=""> 京公网安备11010802020134号 </a>
+                    <a href=""> 京网文[2020]0276-042号 </a>
+                    <br/>
+                    <a href="">（京）网械平台备字（2018）第00005号 </a>
+                    <a href=""> 互联网药品信息服务资格证 (京)-非经营性-2014-0090 </a>
+                    <a href=""> 营业执照 </a>
+                    <a href=""> 医疗器械质量公告 </a>
+                    <br />
+                    <a href=""> 增值电信业务许可证 </a>
+                    <span> 网络食品经营备案（京）【2018】WLSPJYBAHF-12 </span>
+                    <a href=""> 食品经营许可证 </a>
+                    <br />
+                    <span> 违法和不良信息举报电话：171-5104-4404 </span>
+                    <a href=""> 知识产权侵权投诉 </a>
+                    <span> 本网站所列数据，除特殊说明，所有数据均出自我司实验室测试 </span>
+                </p>
+                <div class="info-link">
+                    <a href="javascript:;">
+                        <img src="/imgs/truste.png">
+                    </a>
+                    <a href="javascript:;">
+                        <img src="/imgs/v-logo-2.png">
+                    </a>
+                    <a href="javascript:;">
+                        <img src="/imgs/v-logo-1.png">
+                    </a>
+                    <a href="javascript:;">
+                        <img src="/imgs/trueth.png">
+                    </a>
                 </div>
             </div>
         </div>
@@ -133,7 +179,7 @@ export default {
         .service-menu{
             padding: 40px 0;
             .menu-list{
-                display: flex;
+                display: inline-flex;
                 justify-content: space-around;
                 width: 960px;
                 position: relative;
@@ -156,6 +202,103 @@ export default {
                         height: 111px;
                         border-right: 1px solid $colorC;
                     }
+                }
+            }
+            .service-info{
+                float: right;
+                width: 251px;
+                text-align: center;
+                color: #616161;
+                .phone{
+                    font-size: 22px;
+                    color: #ff6700;
+                }
+                .time{
+                    margin: 0 0 5px 0;
+                }
+                .cheat{
+                    width: 120px;
+                    margin: auto;
+                    height: 30px;
+                    line-height: 30px;
+                    border: 1px solid #ff6700;
+                    .iconfont{
+                        font-size: 14px;
+                        margin-inline-end: 5px;
+                    }
+                    span{
+                        color: #ff6700;
+                    }   
+                    &:hover{
+                        background-color: #ff6700;
+                        span{
+                                
+                                color: white;
+                        }
+                    }
+                }
+                .connect{
+                    margin-top: 12px;
+                    .wb{
+                        width: 24px;
+                        height: 24px;
+                        display: inline-block;
+                        margin: 0px 0 0 10px;
+                        vertical-align: middle;
+                        background-image: url('/imgs/wb.png') ;
+                        background-size: contain;
+                        cursor: pointer;
+                        &:hover{
+                            background: url('/imgs/wb@2x.png') no-repeat;
+                            background-size: contain;
+                        }
+                    }
+                    .wx{
+                        width: 24px;
+                        height: 24px;
+                        display: inline-block;
+                        margin: 0px 0 0 10px;
+                        vertical-align: middle;
+                        background: url('/imgs/wx.png') no-repeat;
+                        background-size: contain;
+                        cursor: pointer;
+                        &:hover{
+                            background: url('/imgs/wx@2x.png') no-repeat;
+                            background-size: contain;
+                        }
+                    }
+                }
+                &::after{
+                    content: '';
+                    display: block;
+                    clear: both;
+                }
+            }
+        }
+        .info-text{
+            .sites{
+                margin-block-start: 14px;
+                margin-block-end: 14px;
+                a{
+                    text-decoration: none;
+                    font-size: 14px;
+                    color: #757575;
+                }
+                span{
+                    font-size: 14px;
+                    margin: 0 8px;
+                }
+            }
+            .info-detail{
+                a{
+                    font-size: 14px;
+                    color: #757575;
+                }
+            }
+            .info-link{
+                margin-block-start: 10px;
+                img{
+                    margin: 0px 5px;
                 }
             }
         }
