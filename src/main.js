@@ -3,7 +3,14 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import App from './App.vue'
 import router from './router'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
+import 'swiper/css/swiper.css'
 import './assets/iconfont.css';
+
+Vue.use(VueAxios,axios)
+Vue.use(VueAwesomeSwiper)
+Vue.config.productionTip = false
 
 axios.defaults.baseURL = '/api'
 axios.defaults.timeout = 8000;
@@ -27,11 +34,6 @@ axios.interceptors.response.use(function(response){
     return Promise.reject(res);
   }
 });
-
-
-Vue.use(VueAxios,axios)
-
-Vue.config.productionTip = false
 
 
 new Vue({

@@ -35,7 +35,7 @@
                 </div>
                 <div class="goods-menu">
                     <div class="menu-wrapper">
-                        <span>小米手机</span>
+                        <span class="title">小米手机</span>
                         <div class="goods-list">
                             <ul class="goods-detail" >
                                 <li class='product' v-for="item of ProductList" :key="item.id">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="menu-wrapper">
-                        <span>Redmi 红米</span>
+                        <span class="title">Redmi 红米</span>
                         <div class="goods-list">
                             <ul class="goods-detail" >
                                 <li class='product' v-for="item of RedMiList" :key="item.id">
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="menu-wrapper">
-                        <span>电视</span>
+                        <span class="title">电视</span>
                         <div class="goods-list">
                             <ul class="goods-detail" >
                                 <li class='product' v-for="item of TvList" :key="item.id">
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div class="menu-wrapper">
-                        <span>笔记本</span>
+                        <span class="title">笔记本</span>
                         <div class="goods-list">
                             <ul class="goods-detail" >
                                 <li class='product' v-for="item of PcList" :key="item.id">
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <div class="menu-wrapper">
-                        <span>家电</span>
+                        <span class="title">家电</span>
                         <div class="goods-list">
                             <ul class="goods-detail" >
                                 <li class='product' v-for="item of MaList" :key="item.id">
@@ -115,7 +115,7 @@
                         </div>
                     </div>
                     <div class="menu-wrapper">
-                        <span>路由器</span>
+                        <span class="title">路由器</span>
                         <div class="goods-list">
                             <ul class="goods-detail" >
                                 <li class='product' v-for="item of RouterList" :key="item.id">
@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <div class="menu-wrapper">
-                        <span>智能硬件</span>
+                        <span class="title">智能硬件</span>
                         <div class="goods-list">
                             <ul class="goods-detail" >
                                 <li class='product' v-for="item of AiList" :key="item.id">
@@ -147,10 +147,10 @@
                         </div>
                     </div>
                     <div class="menu-wrapper">
-                        <span>服务</span>
+                        <span class="title">服务</span>
                     </div>
                     <div class="menu-wrapper">
-                        <span>社区</span>
+                        <span class="title">社区</span>
                     </div>
                     
                 </div>
@@ -286,9 +286,10 @@ export default {
                 margin-left: 30px;
                 .menu-wrapper{
                     display: inline-block;
-                    span{
+                    .title{
+                        display: inline-block;
                         font-size: 16px;
-                        margin: 26px 10px;
+                        padding: 0px 10px;
                         cursor: pointer;
                     }
                     &:hover{
@@ -296,16 +297,18 @@ export default {
                             color: $colorA;
                         }
                         .goods-list{
-                            height: 250px;
                             opacity: 1;
+                            height: 250px;
                             transition: all 0.5s;
                         }
                     }
                 }
                 .goods-list{
                     position: absolute;
+                    z-index: 10;
                     border: 1px solid #E5E5E5;
                     box-shadow: 0px 7px 6px 0px rgba(0,0,0,0.11);
+                    background-color: white;
                     left: 0px;
                     min-width: 1226px;
                     width: 100vw;

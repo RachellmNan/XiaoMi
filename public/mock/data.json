@@ -1,12 +1,56 @@
 {
     "status":0,
     "data": {
-        "id": 12,
-        "username": "admin",
-        "email": "admin@51purse.com",
-        "phone": null,
-        "role": 0,
-        "createTime": 1479048325000,
-        "updateTime": 1479048325000
+        "phone-list":[
+            [{"img":"/imgs/swiper/phone/0.jpg","title":"Redmi 9A"},{"img":"/imgs/swiper/phone/1.jpg","title":"Redmi 9"},{"img":"/imgs/swiper/phone/2.jpg","title":"Redmi 10X 4G"},{"img":"/imgs/swiper/phone/3.jpg","title":"Redmi 10X 5G 系列"},{"img":"/imgs.swiper/phone/4.jpg","title":"小米10 青春版"},{"img":"/imgs.swiper/phone/5.jpg","title":"Redmi K30 Pro"},],
+            [{"img":"/imgs.swiper/phone/6.jpg","title":"Redmi K30 Pro 变焦版"},{"img":"/imgs/swiper/phone/7.jpg","title":"腾讯黑鲨游戏手机3"},{"img":"/imgs/swiper/phone/8.jpg","title":"腾讯黑鲨游戏手机3 Pro"},{"img":"/imgs/swiper/phone/9.jpg","title":"小米10 Pro"},{"img":"/imgs/swiper/phone/10.jpg","title":"小米10"},{"img":"/imgs/swiper/phone/11.jpg","title":"Redmi K30 4G"}],
+            [{"img":"/imgs/swiper/phone/12.jpg","title":"Redmi K30 5G"},{"img":"/imgs/swiper/phone/13.jpg","title":"Redmi 8A"},{"img":"/imgs/swiper/phone/14.jpg","title":"Redmi 8"},{"img":"/imgs/swiper/phone/15.jpg","title":"小米MIX Alpha"},{"img":"/imgs/swiper/phone/16.jpg","title":"Redmi Note 8 Pro"},{"img":"/imgs/swiper/phone/17.jpg","title":"Redmi Note 8"}],
+            [{"img":"/imgs/swiper/phone/18.jpg","title":"Redmi 7A"},{"img":"/imgs/swiper/phone/19.jpg","title":"小米移动 电话卡"},{"img":"/imgs/swiper/phone/20.jpg","title":"手机上门维修"},{"img":"/imgs/swiper/phone/21.jpg","title":"云服务空间月卡"},{"img":"/imgs/swiper/phone/22.jpg","title":"中国电信"}]
+        ],
+        "tv-list":[
+            [{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""}],
+            [{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""}],
+            [{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""}],
+            [{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""},{"img":"/imgs/swiper/tv/.jpg","title":""}]
+        ],
+        "mac-list":[
+            [{"img":"/imgs/swiper/mc/.jpg","title":""},{"img":"/imgs/swiper/mc/.jpg","title":""},{"img":"/imgs/swiper/mc/.jpg","title":""},{"img":"/imgs/swiper/mc/.jpg","title":""},{"img":"/imgs/swiper/mc/.jpg","title":""},{"img":"/imgs/swiper/mc/.jpg","title":""}],
+            [{"img":"/imgs/swiper/mc/.jpg","title":""},{"img":"/imgs/swiper/mc/.jpg","title":""},{"img":"/imgs/swiper/mc/.jpg","title":""},{"img":"/imgs/swiper/mc/.jpg","title":""},{"img":"/imgs/swiper/mc/.jpg","title":""}]
+        ],
+        "machine-list":[
+            [{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""}],
+            [{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""}],
+            [{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""}],
+            [{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""},{"img":"/imgs/swiper/machine/.jpg","title":""}]
+        ],
+        "wear-list":[
+            [{"img":"/imgs/swiper/wear/.jpg","title":""},{"img":"/imgs/swiper/wear/.jpg","title":""},{"img":"/imgs/swiper/wear/.jpg","title":""},{"img":"/imgs/swiper/wear/.jpg","title":""},{"img":"/imgs/swiper/wear/.jpg","title":""},{"img":"/imgs/swiper/wear/.jpg","title":""}],
+            [{"img":"/imgs/swiper/wear/.jpg","title":""},{"img":"/imgs/swiper/wear/.jpg","title":""},{"img":"/imgs/swiper/wear/.jpg","title":""},{"img":"/imgs/swiper/wear/.jpg","title":""},{"img":"/imgs/swiper/wear/.jpg","title":""},{"img":"/imgs/swiper/wear/.jpg","title":""}],
+            [{"img":"/imgs/swiper/wear/.jpg","title":""},{"img":"/imgs/swiper/wear/.jpg","title":""},{"img":"/imgs/swiper/wear/.jpg","title":""}]
+        ],
+        "router-list":[
+            [{"img":"/imgs/swiper/router/.jpg","title":""},{"img":"/imgs/swiper/router/.jpg","title":""},{"img":"/imgs/swiper/router/.jpg","title":""},{"img":"/imgs/swiper/router/.jpg","title":""},{"img":"/imgs/swiper/router/.jpg","title":""},{"img":"/imgs/swiper/router/.jpg","title":""}],
+            [{"img":"/imgs/swiper/router/.jpg","title":""},{"img":"/imgs/swiper/router/.jpg","title":""},{"img":"/imgs/swiper/router/.jpg","title":""},{"img":"/imgs/swiper/router/.jpg","title":""},{"img":"/imgs/swiper/router/.jpg","title":""},{"img":"/imgs/swiper/router/.jpg","title":""}],
+            [{"img":"/imgs/swiper/router/.jpg","title":""},{"img":"/imgs/swiper/router/.jpg","title":""},{"img":"/imgs/swiper/router/.jpg","title":""}]
+        ],
+        "parts-list":[
+            [{"img":"/imgs/swiper/parts/.jpg","title":""},{"img":"/imgs/swiper/parts/.jpg","title":""},{"img":"/imgs/swiper/parts/.jpg","title":""},{"img":"/imgs/swiper/parts/.jpg","title":""},{"img":"/imgs/swiper/parts/.jpg","title":""},{"img":"/imgs/swiper/parts/.jpg","title":""}],
+            [{"img":"/imgs/swiper/parts/.jpg","title":""},{"img":"/imgs/swiper/parts/.jpg","title":""},{"img":"/imgs/swiper/parts/.jpg","title":""},{"img":"/imgs/swiper/parts/.jpg","title":""},{"img":"/imgs/swiper/parts/.jpg","title":""},{"img":"/imgs/swiper/parts/.jpg","title":""}]
+        ],
+        "health-list":[
+            [{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""}],
+            [{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""}],
+            [{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""},{"img":"/imgs/swiper/health/.jpg","title":""}]
+        ],
+        "headset-list":[
+            [{"img":"/imgs/swiper/headset/.jpg","title":""},{"img":"/imgs/swiper/headset/.jpg","title":""},{"img":"/imgs/swiper/headset/.jpg","title":""},{"img":"/imgs/swiper/headset/.jpg","title":""},{"img":"/imgs/swiper/headset/.jpg","title":""},{"img":"/imgs/swiper/headset/.jpg","title":""}],
+            [{"img":"/imgs/swiper/headset/.jpg","title":""},{"img":"/imgs/swiper/headset/.jpg","title":""},{"img":"/imgs/swiper/headset/.jpg","title":""},{"img":"/imgs/swiper/headset/.jpg","title":""},{"img":"/imgs/swiper/headset/.jpg","title":""},{"img":"/imgs/swiper/headset/.jpg","title":""}],
+            [{"img":"/imgs/swiper/headset/.jpg","title":""},{"img":"/imgs/swiper/headset/.jpg","title":""},{"img":"/imgs/swiper/headset/.jpg","title":""},{"img":"/imgs/swiper/headset/.jpg","title":""}]
+        ],
+        "life-list":[
+            [{"img":"/imgs/swiper/life/.jpg","title":""},{"img":"/imgs/swiper/life/.jpg","title":""},{"img":"/imgs/swiper/life/.jpg","title":""},{"img":"/imgs/swiper/life/.jpg","title":""},{"img":"/imgs/swiper/life/.jpg","title":""},{"img":"/imgs/swiper/life/.jpg","title":""}],
+            [{"img":"/imgs/swiper/life/.jpg","title":""},{"img":"/imgs/swiper/life/.jpg","title":""},{"img":"/imgs/swiper/life/.jpg","title":""},{"img":"/imgs/swiper/life/.jpg","title":""},{"img":"","title":""},{"img":"","title":""}],
+            [{"img":"/imgs/swiper/life/.jpg","title":""},{"img":"/imgs/swiper/life/.jpg","title":""},{"img":"/imgs/swiper/life/.jpg","title":""},{"img":"/imgs/swiper/life/.jpg","title":""}]
+        ]
     }
 }
