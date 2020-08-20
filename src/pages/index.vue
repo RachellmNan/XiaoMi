@@ -174,20 +174,26 @@
                     <img src="/imgs/banner/phone.jpg" alt="">
                 </a>
             </div>
-            <goods-box></goods-box>
+            <goods-box :lists="PhoneGoods"></goods-box>
+            <video-wrapper></video-wrapper>
+            <NavSlide></NavSlide>
         </div>
     </div>
 </template>
 
 <script>
 import GoodsBox from '../components/GoodsBox'
+import NavSlide from '../components/NavSlide'
+import VideoWrapper from '../components/VideoWrapper'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 export default {
     name:'Index',
     components:{
         Swiper,
         SwiperSlide,
-        GoodsBox
+        GoodsBox,
+        NavSlide,
+        VideoWrapper
     },
     data(){
         return {
@@ -213,7 +219,8 @@ export default {
             PartsList:[],
             HealthList:[],
             HeadsetList:[],
-            LifeList:[]
+            LifeList:[],
+            PhoneGoods:{}
         }
     },
     mounted(){
@@ -229,7 +236,8 @@ export default {
             this.HealthList  = res["health-list"]
             this.HeadsetList = res["headset-list"]
             this.LifeList    = res["life-list"]
-            console.log(this.PartsList)
+            this.PhoneGoods  = res["Phone-goods"]
+            // console.log(this.PhoneGoods,this.PhoneGoods instanceof Array)
         })
     }
 }
@@ -390,7 +398,6 @@ export default {
                     span{
                         color: #fff;
                         display: block;
-                        
                     }
                 }
                 &::after{
@@ -417,7 +424,6 @@ export default {
                     display: block;
                     clear: both;
             }
-
         }
     }
     .bottom-wraper{

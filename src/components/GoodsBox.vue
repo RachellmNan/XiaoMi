@@ -1,19 +1,35 @@
 <template>
-    <div class="GoodsBox">
-        <div class="title-wraper">
-            <span class="title">家电</span>
-            <span class="iconfont">&#xe625;</span>
-            <span class="category-item">查看全部</span>
-            <span class="category-item">热门</span>
-            <span class="category-item">电视影音</span>
-        </div>
-        <div class="goods-wraper">
-            <div class="poster" v-if="0">
-                <img src="/imgs/poster/0.jpg" alt="">
+    <div class="GoodBox">
+        <div class="title">
+            <h2>搭配</h2>
+            <div class="more">
+                <ul class="category-list">
+                    <li class="item">热门</li>
+                    <li class="item">安防</li>
+                    <li class="item">出行</li>
+                </ul>
             </div>
-            <div class="poster" v-if="1">
-                <img src="/imgs/poster/1.jpg" alt="">
-                <img src="/imgs/poster/2.jpg" alt="">
+        </div>
+        <div class="goods-container">
+            <div class="img-wrapper">
+                <img src="/imgs/poster/0.jpg" >
+            </div>
+            <div class="good-wrapper">
+                <ul class="goods-list">
+                    <li class="goods-item" v-for="item of GoodsList" :key="item.id">
+                        <a href="">
+                            <div class="goodsImg-wrapper">
+                                <img :src="item.img">
+                            </div>
+                            <h3>{{item.title}}</h3>
+                            <p>{{item.desc}}</p>
+                            <p class="price-wrapper">
+                                <span class="newPrice">{{item.DisPrice}}</span>
+                                <span class="oldPrice">{{item.OldPrice}}</span>
+                            </p>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -21,71 +37,132 @@
 
 <script>
 export default {
-    name:"GoodsBox"
+    name:"GoodsBox",
+    props:{
+        lists:{
+            type:Object
+        }
+    },
+    data(){
+        return {
+            GoodsList:{}
+        }
+    },
+    watch:{
+        lists(newVal){
+            this.GoodsList = JSON.parse(JSON.stringify(newVal)).all.data
+        }
+    }
 }
 </script>
 
 <style lang="scss">
-    .GoodsBox{
-        .title-wraper{
-            .title{
-                display: inline-block;
-                height: 58px;
-                line-height: 58px;
+    .GoodBox{
+        background-color: whitesmoke;
+        .title{
+            position: relative;
+            h2{
                 font-size: 22px;
+                font-weight: 200;
+                line-height: 58px;
+                color: #333;
+                width: 200px;
             }
-            span{
-                cursor: pointer;
+            .more{
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                .category-list{
+                    padding: 16px 0 0;
+                    font-size: 16px;
+                    list-style-type: none;
+                    li{
+                        display: inline-block;
+                        margin: 0 0 0 30px;
+                        cursor: pointer;
+                        &:hover{
+                            color: #ff6700;
+                            border-bottom: 2px solid #ff6700;
+                        }
+                    }
+                }
             }
-            .iconfont{
-                float: right;
-                display: block;
-                line-height: 26px;
-                margin-left: 10px;
+        }
+        .goods-container{
+            position: relative;
+            .img-wrapper{
+                float: left;
+                margin-bottom: 14px;
+                height: 614px;
+                img{
+                    height: 614px;
+                }
             }
-            .category-item{
-                float: right;
-                display: block;
-                margin-left: 10px;
-                font-size: 16px;
-                &:hover{
-                    &::after{
-                        // content: '';
-                        // display: block;
-                        // height: 2px;
-                        // background-color: #ff6700;
-                        opacity: 1;
+            .good-wrapper{
+                display: inline-block;
+                width: 992px;
+                height: 614px;
+                margin-bottom: 14px;
+                margin:0px 0px 14px 0px;
+                .goods-item{
+                    float: left;
+                    background-color: #fff;
+                    width: 234px;
+                    height: 260px;
+                    padding: 20px 0px;
+                    margin-left: 14px;
+                    margin-bottom: 14px;
+                    text-align: center;
+                    a{
+                        color: #757575;
+                    }
+                    .goodsImg-wrapper{
+                        height: 160px;
+                        width: 160px;
+                        margin: 0px 37px 18px;
+                        img{
+                            width: 160px;
+                            height: 160px;
+                        }  
+                    }
+                    h3{
+                        font-weight: 400;
+                        font-size: 14px;
+                        
+                        margin: 0px 10px 2px;
+                    }
+                    p{
+                        font-size: 12px;
+                        height: 18px;
+                        color: #b0b0b0;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        margin: 0px 10px 10px;
+                    }
+                    .price-wrapper{
+                        margin: 0 10px 14px;
+                        font-size: 14px;
+                        .newPrice{
+                            color: #ff6700;
+                            margin-right: 15px;
+                        }
+                        .oldPrice{
+                            text-decoration: line-through;
+                        }
                     }
                 }
                 &::after{
                     content: '';
                     display: block;
-                    height: 2px;
-                    opacity: 0;
-                    background-color: #ff6700;
+                    clear: both;
                 }
             }
             &::after{
-                content: "";
+                content: '';
                 display: block;
                 clear: both;
             }
         }
-        .goods-wraper{
-            .poster{
-                float: left;
-                img{
-                    display: block;
-                    width: 234px;
-                    margin-bottom: 14px;
-                }
-            }
-            &::after{
-                content: "";
-                clear: both;
-                display: block;
-            }
-        }
-
     }
 </style>
