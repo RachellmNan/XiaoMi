@@ -103,6 +103,12 @@ export default {
                 line-height: 25px;
                 top: 3px;
                 right: 0px;
+                cursor: pointer;
+                transition: color .25s;
+                &:hover{
+                    color: #ff6700;
+                    transition: color .25s;
+                }
                 span{
                     font-size: 16px;
                     vertical-align: middle;
