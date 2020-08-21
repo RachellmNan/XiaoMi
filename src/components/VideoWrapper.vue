@@ -9,93 +9,29 @@
         </div>
         <div class="VideoWrapper">
             <ul class="video-list">
-                <li class="video-item" >
+                <li class="video-item" v-for="item of lists" :key="item.id">
                     <!-- <a href="javascript:;"> -->
-                        <div class="item-wrapper" @click="showVideo = true ; isPlaying = 1">
+                        <div class="item-wrapper" @click="showVideo = true ; PlayingNumber = item.id">
                             <div class="img-wrapper">
-                                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/101b19aca4bb489bcef0f503e44ec866.jpg" alt="">
+                                <img :src=item.img alt="">
                             </div>
-                            <h3>Redmi 10X系列发布会</h3>
-                            <p>Redmi 10X系列发布会</p>
+                            <h3>{{item.title}}</h3>
+                            <p>{{item.desc}}</p>
                         </div>
-                        <div class="mask" v-if="showVideo && isPlaying == 1">
+                        <div class="mask" v-show="showVideo && PlayingNumber == item.id">
                             <div class="video-container">
                                 <div class="top-box">
-                                    <h3>Redmi 10系列发布会</h3>
-                                    <div class="icon-wrapper" @click="showVideo = false">
-                                        <span class="iconfont" >&#xe609;</span>
+                                    <h3>{{item.title}}</h3>
+                                    <div class="icon-wrapper" @click="closeVideo($event)" :id=item.id>
+                                        <span class="iconfont" :id=item.id>&#xe609;</span>
                                     </div>
                                 </div>
-                                <video src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/11c70c96529b6e6938567ec1aa0910e0.mp4" autoplay  controls></video>
-                            </div>  
-                        </div>
-                    <!-- </a> -->
-                </li>
-                <li class="video-item" >
-                    <!-- <a href="javascript:;"> -->
-                        <div class="item-wrapper" @click="showVideo = true ;isPlaying = 2">
-                            <div class="img-wrapper">
-                                <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/96563e75833ba4563bd469dd28203b09.jpg?thumb=1&w=592&h=360&f=webp&q=90" alt="">
-                            </div>
-                            <h3>Redmi 10X系列发布会</h3>
-                            <p>Redmi 10X系列发布会</p>
-                        </div>
-                        <div class="mask" v-if="showVideo && isPlaying == 2">
-                            <div class="video-container">
-                                <div class="top-box">
-                                    <h3>Redmi 10系列发布会</h3>
-                                    <div class="icon-wrapper" @click="showVideo = false">
-                                        <span class="iconfont" >&#xe609;</span>
-                                    </div>
+                                <div class="play-icon">
+                                    <span @click="rePlay" class="iconfont" v-show="!isPlaying" :id=item.id>&#xe631;</span>
                                 </div>
-                                <video src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7cdabcaa763392c86b944eaf4e68d6a3.mp4" autoplay  controls></video>
+                                <video  @playing="isPlaying=true" @pause="isPlaying=false" :src=item.VideoSrc  autoplay  controls></video>
                             </div>  
                         </div>
-                    <!-- </a> -->
-                </li>
-                <li class="video-item" >
-                    <!-- <a href="javascript:;"> -->
-                        <div class="item-wrapper" @click="showVideo = true ; isPlaying = 3">
-                            <div class="img-wrapper">
-                                <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/2fd26bb99b723337a2f8eaba84f7d5bb.jpg?thumb=1&w=592&h=360&f=webp&q=90" alt="">
-                            </div>
-                            <h3>Redmi 10X系列发布会</h3>
-                            <p>Redmi 10X系列发布会</p>
-                        </div>
-                        <div class="mask" v-if="showVideo && isPlaying == 3">
-                            <div class="video-container">
-                                <div class="top-box">
-                                    <h3>Redmi 10系列发布会</h3>
-                                    <div class="icon-wrapper" @click="showVideo = false">
-                                        <span class="iconfont" >&#xe609;</span>
-                                    </div>
-                                </div>
-                                <video src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e25d81c4922fca5ebe51877717ef9b76.mp4" autoplay  controls></video>
-                            </div>  
-                        </div>
-                    <!-- </a> -->
-                </li>
-                <li class="video-item" >
-                    <!-- <a href="javascript:;"> -->
-                        <div class="item-wrapper" @click="showVideo = true ; isPlaying = 4">
-                            <div class="img-wrapper">
-                                <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/a8dd25cab48c60fc6387b9001eddc3f9.jpg?thumb=1&w=592&h=360&f=webp&q=90" alt="">
-                            </div>
-                            <h3>Redmi 10X系列发布会</h3>
-                            <p>Redmi 10X系列发布会</p>
-                        </div>
-                        <div class="mask" v-if="showVideo && isPlaying == 4">
-                            <div class="video-container">
-                                <div class="top-box">
-                                    <h3>Redmi 10系列发布会</h3>
-                                    <div class="icon-wrapper" @click="showVideo = false">
-                                        <span class="iconfont" >&#xe609;</span>
-                                    </div>
-                                </div>
-                                <video src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/eadb8ddc86f1791154442a928b042e2f.mp4" autoplay  controls></video>
-                            </div>  
-                        </div>
-                    <!-- </a> -->
                 </li>
             </ul>
         </div>
@@ -105,16 +41,47 @@
 <script>
 export default {
     name:'ViedeoGroup',
+    props:{
+        lists:{
+            type:Array,
+            default(){
+                return []
+            }
+        }
+    },
     data(){
         return {
             showVideo : false,
-            isPlaying : ''
+            isPlaying : false,
+            PlayingNumber:''
         }
     },
     methods:{
         controlVideo(){
             this.showVideo = !this.showVideo
             console.log(this.showVideo)
+        },
+        rePlay(){
+            this.isPlaying = true
+            let idx = event.target.id
+            console.log(idx)
+            let via = document.getElementsByTagName('video')[idx]
+            
+            if(via.paused){
+                via.play()
+            }
+        },
+        closeVideo(e){
+            this.showVideo = false
+            let idx = e.target.id
+            console.log(idx)
+            let via = document.getElementsByTagName('video')[idx]
+            console.log(via)
+            let currentSrc = via.currentSrc
+            console.dir(currentSrc)
+            via.src = ''
+            via.src = currentSrc
+            via.pause()
         }
     }
 }
@@ -224,6 +191,21 @@ export default {
                                 }
                             }
                         }
+                        .play-icon{
+                            cursor: pointer;
+                            .iconfont{
+                                z-index: 101;
+                                position: absolute;
+                                display: block;
+                                left: 50%;
+                                top: 50%;
+                                transform: translate(-50%,-50%);
+                                width: 70px;
+                                height: 70px;
+                                font-size: 68px;
+                            }
+                        }
+                        
                         video{
                             width: 880px;
                         }

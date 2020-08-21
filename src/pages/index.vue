@@ -175,7 +175,7 @@
                 </a>
             </div>
             <goods-box :lists="PhoneGoods"></goods-box>
-            <video-wrapper></video-wrapper>
+            <video-wrapper :lists="VideoGroup"></video-wrapper>
             <NavSlide></NavSlide>
         </div>
     </div>
@@ -220,7 +220,8 @@ export default {
             HealthList:[],
             HeadsetList:[],
             LifeList:[],
-            PhoneGoods:{}
+            PhoneGoods:{},
+            VideoGroup:[]
         }
     },
     mounted(){
@@ -237,6 +238,8 @@ export default {
             this.HeadsetList = res["headset-list"]
             this.LifeList    = res["life-list"]
             this.PhoneGoods  = res["Phone-goods"]
+            this.VideoGroup  = res["HomeVideo"]
+            console.log(this.VideoGroup)
             // console.log(this.PhoneGoods,this.PhoneGoods instanceof Array)
         })
     }
