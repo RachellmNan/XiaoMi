@@ -10,7 +10,7 @@
         <div class="wrapper">
             <div class="left">
                 <div class="info-wrapper">
-                    <p class="round">14:00 场</p>
+                    <p class="round">10:00 场</p>
                     <span class="logo iconfont">&#xe87a;</span>
                     <p class="desc">{{(hou == 0 && minu == 0 && second == 0) == true ?  '本场已结束' : '本场剩余时间'  }}</p>
                     <div class="time-rest">
@@ -24,7 +24,7 @@
             </div>
             <div class="right">
                 <ul class="goods-list" id="SecKill" >
-                    <li class="goods-item" v-for="item of lists" :key="item.id">
+                    <li class="goods-item" v-for="item of lists" :key="item.id" :class="{ first : item.id % 5 == 0 , second : item.id % 5 == 1 , third : item.id % 5 == 2 , forth : item.id % 5 == 3 , fifth : item.id % 5 == 4}">
                         <a href="">
                             <div class="content">
                                 <div class="img-wrapper">
@@ -131,10 +131,13 @@ export default {
             let myHour = myDate.getHours()
             let myMinute = myDate.getMinutes()
             let mySecond = myDate.getSeconds()
-            if(myHour >= 22 && myMinute >= 13 && myHour <= 24){
+            if(myHour >= 10 && myMinute >= 0 && myHour <= 18){
                 this.$nextTick(function(){
                     console.log(`测试 ${myHour}时 ${myMinute}分 ${mySecond}秒`)
-                    if(mySecond >0) this.isFirstTime = false
+                    // 判断是否为倒计时的第一次操作
+                    // 因为是通过和系统时间来进行比较进行循环
+                    // 当秒钟为0时 不应该开始将模板的数据进行操作
+                    if(mySecond > 0) this.isFirstTime = false
                     
                     if(!this.isFirstTime){
                         // 判断秒钟
@@ -165,7 +168,7 @@ export default {
             }
         },
         startCirculation(){
-            // setInterval(this.calculateSec,1000)
+            setInterval(this.calculateSec,1000)
         }
     },
     mounted(){
@@ -333,6 +336,21 @@ export default {
                             }
                         }
                     }
+                }
+                .first{
+                    border-top: 1px solid #ffac13;
+                }
+                .second{
+                    border-top: 1px solid #83c44e;
+                }
+                .third{
+                    border-top: 1px solid #2196f3;
+                }
+                .forth{
+                    border-top: 1px solid #e53935;
+                }
+                .fifth{
+                    border-top: 1px solid #00c0a5;
                 }
                 &::after{
                     content: '';
