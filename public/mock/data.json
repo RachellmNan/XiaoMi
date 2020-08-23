@@ -81,6 +81,21 @@
             {"id":"1","title":"小米10 青春版 发布会","desc":"","img":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/96563e75833ba4563bd469dd28203b09.jpg?thumb=1&w=592&h=360&f=webp&q=90","VideoSrc":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7cdabcaa763392c86b944eaf4e68d6a3.mp4"},
             {"id":"2","title":"小米10 8k手机拍大片","desc":"","img":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/2fd26bb99b723337a2f8eaba84f7d5bb.jpg?thumb=1&w=592&h=360&f=webp&q=90","VideoSrc":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e25d81c4922fca5ebe51877717ef9b76.mp4"},
             {"id":"3","title":"小米10 发布会","desc":"","img":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a8dd25cab48c60fc6387b9001eddc3f9.jpg?thumb=1&w=592&h=360&f=webp&q=90","VideoSrc":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/eadb8ddc86f1791154442a928b042e2f.mp4"}
+        ],
+        "SecKillGoods":[
+            {"id":"0","img":"http://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b48160e1c150044808c9c8787c140750.jpg?thumb=1&w=400&h=400&f=webp&q=90","title":"日常元素抽纸 青春版 24包/箱","desc":"精选原生竹浆，健康环保","newPrice":"27.9","oldPrice":"32.9"},
+            {"id":"1","img":"http://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/e277547c6e3329303dd2c20a327424c4.jpg?thumb=1&w=400&h=400","title":"小米AI音箱","desc":"听音乐、语音遥控家电","newPrice":"199","oldPrice":"299"},
+            {"id":"2","img":"http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1532604005.80875371.jpg?thumb=1&w=400&h=400","title":"小米路由器4C 白色","desc":"300M单频，高增益4天线","newPrice":"59","oldPrice":"99"},
+            {"id":"3","img":"http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597309849.97472999.jpg?thumb=1&w=400&h=400","title":"Redmi G i5/16GB/512GB PCIe/GTX 1650Ti/144Hz","desc":"不满足一种突破，也不安于被视野束缚","newPrice":"5799","oldPrice":"6299"},
+            {"id":"4","img":"http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1560238127.40319869.png?thumb=1&w=400&h=400","title":"小米手环4 NFC版 黑色","desc":"大屏彩显，可刷公交、门禁","newPrice":"179","oldPrice":"229"},
+            {"id":"5","img":"http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1575878438.17548919.jpg?thumb=1&w=400&h=400","title":"RedmiBook 13 i5 8G 512G SSD MX250 2G 银","desc":"让高性能全面展现","newPrice":"4299","oldPrice":"4799"},
+            {"id":"6","img":"http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1589945613.22046687.jpg?thumb=1&w=400&h=400","title":"圈厨多用途电热锅 白色","desc":"煎烤烙炖蒸焖涮，样样精通","newPrice":"169","oldPrice":"199"},
+            {"id":"7","img":"http://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7a4cc78dcb3b77372c600aa28291ad3b.jpg?thumb=1&w=400&h=400&f=webp&q=90","title":"小米曲面显示器 34英寸 黑","desc":"超宽大环绕显示屏","newPrice":"2199","oldPrice":"2499"},
+            {"id":"8","img":"http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1573354088.50166004.jpg?thumb=1&w=400&h=400","title":"小米无线鼠标 Lite 黑色","desc":"简约设计，轻盈握感","newPrice":"29","oldPrice":"39"},
+            {"id":"9","img":"http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1566878667.59559757.jpg?thumb=1&w=400&h=400","title":"RedmiBook 14 增强版 i7/8G/512G 银色","desc":"","newPrice":"4699","oldPrice":"4999"},
+            {"id":"10","img":"http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1572868360.8284015.jpg?thumb=1&w=400&h=400","title":"巨省电 | 小米新1级立式空调 3匹","desc":"新一级能效巨省电，自清洁","newPrice":"4999","oldPrice":"5999"},
+            {"id":"11","img":"http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1565264857.64986727.jpg?thumb=1&w=400&h=400","title":"小米降噪项圈蓝牙耳机 黑色","desc":"无线降噪，静无止境","newPrice":"399","oldPrice":"499"},
+            {"id":"12","img":"http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1553149205.8737906.jpg?thumb=1&w=400&h=400","title":"小米笔记本Air 12.5\" 2019款 8代M3 4G 128G 金色","desc":"像杂志一样随身携带","newPrice":"3499","oldPrice":"3599"}
         ]
     }
 }

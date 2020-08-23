@@ -3,7 +3,7 @@
         <div class="wraper">
             <div class="container">
                 <div class="swiper-box">
-                    <swiper :options="swiperOptions">
+                    <swiper ref="mySwiper" :options="swiperOptions">
                         <swiper-slide><img src="/imgs/banner/swiper1.png"></swiper-slide>
                         <swiper-slide><img src="/imgs/banner/swiper2.png"></swiper-slide>
                         <swiper-slide><img src="/imgs/banner/swiper3.png"></swiper-slide>
@@ -169,6 +169,7 @@
             </div>
         </div>
         <div class="bottom-wraper">
+            <sec-kill :lists="SecGroup"></sec-kill>
             <div class="banner-box">
                 <a href="javascript:;">
                     <img src="/imgs/banner/phone.jpg" alt="">
@@ -182,6 +183,7 @@
 </template>
 
 <script>
+import SecKill from '../components/SecKill'
 import GoodsBox from '../components/GoodsBox'
 import NavSlide from '../components/NavSlide'
 import VideoWrapper from '../components/VideoWrapper'
@@ -191,6 +193,7 @@ export default {
     components:{
         Swiper,
         SwiperSlide,
+        SecKill,
         GoodsBox,
         NavSlide,
         VideoWrapper
@@ -221,7 +224,13 @@ export default {
             HeadsetList:[],
             LifeList:[],
             PhoneGoods:{},
-            VideoGroup:[]
+            VideoGroup:[],
+            SecGroup:[]
+        }
+    },
+    computed:{
+        swiper() {
+            return this.$refs.mySwiper.$swiper
         }
     },
     mounted(){
@@ -239,7 +248,8 @@ export default {
             this.LifeList    = res["life-list"]
             this.PhoneGoods  = res["Phone-goods"]
             this.VideoGroup  = res["HomeVideo"]
-            console.log(this.VideoGroup)
+            this.SecGroup    = res["SecKillGoods"]
+            console.log(this.SecGroup)
             // console.log(this.PhoneGoods,this.PhoneGoods instanceof Array)
         })
     }
@@ -324,7 +334,7 @@ export default {
                         }
                     }
                     .iconfont::after{
-                        content: '\e600';
+                        content: '\e688';
                         display: inline-block;
                         text-align: right;
                         margin-left: 20px;

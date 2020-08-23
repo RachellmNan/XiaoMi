@@ -5,7 +5,7 @@ import App from './App.vue'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
-import 'swiper/swiper-bundle.css'
+import 'swiper/css/swiper.css'
 import './assets/iconfont.css';
 
 Vue.use(VueAxios,axios)

@@ -63,7 +63,7 @@ export default {
             position: relative;
             h2{
                 font-size: 22px;
-                font-weight: 200;
+                font-weight: 500;
                 line-height: 58px;
                 color: #333;
                 width: 200px;
