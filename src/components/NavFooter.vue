@@ -154,6 +154,11 @@ export default {
                 font-size: 18px;
                 position: relative;
                 cursor: pointer;
+                transition: color 0.25s;
+                &:hover{
+                    color: #ff6700;
+                    transition:  color 0.25s;
+                }
                 .iconfont{
                     font-size: 28px;
                     margin-left: 20px;
@@ -192,6 +197,12 @@ export default {
                     }
                     dd{
                         margin-top: 10px;
+                        cursor: pointer;
+                        transition: color .25s;
+                        &:hover{
+                            color: #ff6700;
+                            transition: color .25s;
+                        }
                     }
                     &:last-child::after{
                         content: '';
@@ -283,6 +294,12 @@ export default {
                     text-decoration: none;
                     font-size: 14px;
                     color: #757575;
+                    cursor: pointer;
+                    transition: color .25s;
+                    &:hover{
+                        color: #ff6700;
+                        transition: color .25s;
+                    }
                 }
                 span{
                     font-size: 14px;
@@ -293,6 +310,15 @@ export default {
                 a{
                     font-size: 14px;
                     color: #757575;
+                    transition: color .25s;
+                    &:hover{
+                        color: #ff6700;
+                        transition: color .25s;
+                    }
+                }
+                span{
+                    font-size: 14px;
+                    font-weight: 400;
                 }
             }
             .info-link{
