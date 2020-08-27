@@ -192,6 +192,9 @@ export default {
                 console.log(this.ProductList,1)
             })
         }
+    },
+    mounted(){
+        this.getProductList()
     }
 }
 </script>

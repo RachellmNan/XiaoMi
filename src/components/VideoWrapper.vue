@@ -10,28 +10,27 @@
         <div class="VideoWrapper">
             <ul class="video-list">
                 <li class="video-item" v-for="item of lists" :key="item.id">
-                    <!-- <a href="javascript:;"> -->
-                        <div class="item-wrapper" @click="showVideo = true ; PlayingNumber = item.id">
-                            <div class="img-wrapper">
-                                <img :src=item.img alt="">
+                    <div class="item-wrapper" @click="showVideo = true ; PlayingNumber = item.id">
+                        <div class="img-wrapper">
+                            <img :src=item.img alt="">
+                        </div>
+                        <h3>{{item.title}}</h3>
+                        <p>{{item.desc}}</p>
+                    </div>
+                    <div class="mask" v-show="showVideo && PlayingNumber == item.id">
+                        <div class="video-container">
+                            <div class="top-box">
+                                <h3>{{item.title}}</h3>
+                                <div class="icon-wrapper" @click="closeVideo($event)" :id=item.id>
+                                    <span class="iconfont" :id=item.id>&#xe609;</span>
+                                </div>
                             </div>
-                            <h3>{{item.title}}</h3>
-                            <p>{{item.desc}}</p>
-                        </div>
-                        <div class="mask" v-show="showVideo && PlayingNumber == item.id">
-                            <div class="video-container">
-                                <div class="top-box">
-                                    <h3>{{item.title}}</h3>
-                                    <div class="icon-wrapper" @click="closeVideo($event)" :id=item.id>
-                                        <span class="iconfont" :id=item.id>&#xe609;</span>
-                                    </div>
-                                </div>
-                                <div class="play-icon">
-                                    <span @click="rePlay" class="iconfont" v-show="!isPlaying" :id=item.id>&#xe631;</span>
-                                </div>
-                                <video  @playing="isPlaying=true" @pause="isPlaying=false" :src=item.VideoSrc  autoplay  controls></video>
-                            </div>  
-                        </div>
+                            <div class="play-icon">
+                                <span @click="rePlay" class="iconfont" v-show="!isPlaying" :id=item.id>&#xe631;</span>
+                            </div>
+                            <video  @playing="isPlaying=true" @pause="isPlaying=false" :src=item.VideoSrc   controls></video>
+                        </div>  
+                    </div>
                 </li>
             </ul>
         </div>
@@ -64,9 +63,7 @@ export default {
         rePlay(){
             this.isPlaying = true
             let idx = event.target.id
-            console.log(idx)
             let via = document.getElementsByTagName('video')[idx]
-            
             if(via.paused){
                 via.play()
             }
@@ -74,11 +71,8 @@ export default {
         closeVideo(e){
             this.showVideo = false
             let idx = e.target.id
-            console.log(idx)
             let via = document.getElementsByTagName('video')[idx]
-            console.log(via)
             let currentSrc = via.currentSrc
-            console.dir(currentSrc)
             via.src = ''
             via.src = currentSrc
             via.pause()

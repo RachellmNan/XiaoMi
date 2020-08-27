@@ -4,9 +4,7 @@
             <h2>搭配</h2>
             <div class="more">
                 <ul class="category-list">
-                    <li class="item">热门</li>
-                    <li class="item">安防</li>
-                    <li class="item">出行</li>
+                    <li @mouseenter="changeColor" class="item" v-for="item in GoodsList" :key="item.uid" :class="{hoverChange:item.uid == hoverId}" :id="item.uid">{{item.title}}</li>
                 </ul>
             </div>
         </div>
@@ -15,9 +13,9 @@
                 <img src="/imgs/poster/0.jpg" >
             </div>
             <div class="good-wrapper">
-                <ul class="goods-list">
-                    <li class="goods-item" v-for="item of GoodsList" :key="item.id">
-                        <a href="">
+                <ul class="goods-list" v-for="list in GoodsList" :key="list.uid" v-show="list.uid == hoverId">
+                    <li class="goods-item" v-for="item of list.data" :key="item.id">
+                        <a href="javascript:;">
                             <div class="goodsImg-wrapper">
                                 <img :src="item.img">
                             </div>
@@ -45,12 +43,20 @@ export default {
     },
     data(){
         return {
-            GoodsList:{}
+            GoodsList:{},
+            hoverId : 0 // 现在展示的tag
         }
     },
     watch:{
         lists(newVal){
-            this.GoodsList = JSON.parse(JSON.stringify(newVal)).all.data
+            this.GoodsList = JSON.parse(JSON.stringify(newVal))
+            console.log(this.GoodsList)
+        }
+    },
+    methods:{
+        // 当鼠标触碰tag时变色
+        changeColor(){
+            this.hoverId = event.target.id
         }
     }
 }
@@ -80,10 +86,12 @@ export default {
                         display: inline-block;
                         margin: 0 0 0 30px;
                         cursor: pointer;
-                        &:hover{
-                            color: #ff6700;
-                            border-bottom: 2px solid #ff6700;
-                        }
+                        border-bottom: 2px solid transparent;
+                    }
+                    .hoverChange{
+                        color: #ff6700;
+                        border-bottom: 2px solid #ff6700;
+                        transition: color .3s , border-bottom .3s;
                     }
                 }
             }

@@ -175,7 +175,8 @@
                     <img src="/imgs/banner/phone.jpg" alt="">
                 </a>
             </div>
-            <goods-box :lists="PhoneGoods"></goods-box>
+            <!-- <goods-box :lists="PhoneGoods"></goods-box> -->
+            <goods-box :lists="AiGoods"></goods-box>
             <video-wrapper :lists="VideoGroup"></video-wrapper>
             <NavSlide></NavSlide>
         </div>
@@ -224,6 +225,7 @@ export default {
             HeadsetList:[],
             LifeList:[],
             PhoneGoods:{},
+            AiGoods:{},
             VideoGroup:[],
             SecGroup:[]
         }
@@ -247,10 +249,10 @@ export default {
             this.HeadsetList = res["headset-list"]
             this.LifeList    = res["life-list"]
             this.PhoneGoods  = res["Phone-goods"]
+            this.AiGoods     = res["Ai-goods"]
             this.VideoGroup  = res["HomeVideo"]
             this.SecGroup    = res["SecKillGoods"]
-            console.log(this.SecGroup)
-            // console.log(this.PhoneGoods,this.PhoneGoods instanceof Array)
+
         })
     }
 }
