@@ -215,7 +215,7 @@ export default {
                         color: #757575;
                     }
                      a{
-                        display: inline-block;
+                        display: block;
                         height: 143px;
                         width: 234px;
                         margin-bottom: 14px;
