@@ -172,7 +172,7 @@ export default {
                 height: 614px;
                 a{
                     display: inline-block;
-                    height: 614px;
+                    height: 300px;
                     width: 234px;
                     transition: box-shadow .3s , transform .3s;
                     &:hover{
