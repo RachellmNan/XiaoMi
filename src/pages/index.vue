@@ -175,8 +175,7 @@
                     <img src="/imgs/banner/phone.jpg" alt="">
                 </a>
             </div>
-            <!-- <goods-box :lists="PhoneGoods"></goods-box> -->
-            <goods-box :lists="AiGoods"></goods-box>
+            <goods-box :lists="AiGoods" :imgGroup = "AiImgGroup" modal="1" :singalPoster="singalPoster" title="搭配"></goods-box>
             <video-wrapper :lists="VideoGroup"></video-wrapper>
             <NavSlide></NavSlide>
         </div>
@@ -224,8 +223,10 @@ export default {
             HealthList:[],
             HeadsetList:[],
             LifeList:[],
+            singalPoster:"/imgs/poster/0.jpg",
             PhoneGoods:{},
             AiGoods:{},
+            AiImgGroup:[],
             VideoGroup:[],
             SecGroup:[]
         }
@@ -250,6 +251,8 @@ export default {
             this.LifeList    = res["life-list"]
             this.PhoneGoods  = res["Phone-goods"]
             this.AiGoods     = res["Ai-goods"]
+            this.AiImgGroup  = [{"id":"0","imgSrc":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/45c23f5b9a927b2dc49c25277e07727c.jpg?thumb=1&w=468&h=600&f=webp&q=90"},
+                                {"id":"1","imgSrc":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a660ce095e8f553a9ed1515265f4e9fc.jpg?thumb=1&w=468&h=600&f=webp&q=90"}]
             this.VideoGroup  = res["HomeVideo"]
             this.SecGroup    = res["SecKillGoods"]
 
