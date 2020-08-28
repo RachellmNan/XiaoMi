@@ -101,8 +101,6 @@ export default {
             this.finalValue += 248*this.singalMoveCount
             var wrapper = document.querySelector("#SecKill")
             wrapper.style.transform = `translateX(${this.finalValue}px)`
-            console.log(wrapper.style.transform)
-            console.log('next',this.leftCount,this.rightCount)
         },
         toNext(){
             if(this.rightCount == 0 ){
@@ -123,8 +121,6 @@ export default {
             this.finalValue -= 248*this.singalMoveCount
             var wrapper = document.querySelector("#SecKill")
             wrapper.style.transform = `translateX(${this.finalValue}px)`
-            console.log(wrapper.style.transform)
-            console.log('prev',this.leftCount,this.rightCount)
         },
         calculateSec(){
             let myDate = new Date()
@@ -133,7 +129,6 @@ export default {
             let mySecond = myDate.getSeconds()
             if(myHour >= 10 && myMinute >= 0 && myHour <= 18){
                 this.$nextTick(function(){
-                    console.log(`测试 ${myHour}时 ${myMinute}分 ${mySecond}秒`)
                     // 判断是否为倒计时的第一次操作
                     // 因为是通过和系统时间来进行比较进行循环
                     // 当秒钟为0时 不应该开始将模板的数据进行操作
@@ -162,7 +157,6 @@ export default {
                             this.hou -= 1
                             this.houInital = false
                         }
-                        console.log(`${this.hou}时 ${this.minu}分 ${this.second}秒`)
                     }
                 })
             }
@@ -182,6 +176,7 @@ export default {
 
 <style lang="scss">
     .SecKill{
+        margin-bottom: 20px;
         .title-wrapper{
             position: relative;
             .introduce{

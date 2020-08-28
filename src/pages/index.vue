@@ -175,7 +175,30 @@
                     <img src="/imgs/banner/phone.jpg" alt="">
                 </a>
             </div>
-            <goods-box :lists="AiGoods" :imgGroup = "AiImgGroup" modal="1" :singalPoster="singalPoster" title="搭配"></goods-box>
+            <goods-box :lists="PhoneGoods"  modal="1" :singalPoster="singalPoster" title="手机"></goods-box>
+            <div class="banner-box">
+                <a href="javascript:;">
+                    <img src="/imgs/banner/machine.jpg" alt="">
+                </a>
+            </div>
+            <goods-box :lists="MathineGoods" modal="2" :imgGroup = "MathineImgGroup"   title="家电"></goods-box>
+            <div class="banner-box">
+                <a href="javascript:;">
+                    <img src="/imgs/banner/Ai.jpg" alt="">
+                </a>
+            </div>
+            <goods-box :lists="AiGoods" modal="2"  :imgGroup = "AiImgGroup"  title="智能"></goods-box>
+            <div class="banner-box">
+                <a href="javascript:;">
+                    <img src="/imgs/banner/surround.jpg" alt="">
+                </a>
+            </div>
+            <goods-box :lists="NearbyGoods" modal="2" :imgGroup = "NearbyImgGroup"   title="周边"></goods-box>
+            <div class="banner-box">
+                <a href="javascript:;">
+                    <img src="/imgs/banner/last.jpg" alt="">
+                </a>
+            </div>
             <video-wrapper :lists="VideoGroup"></video-wrapper>
             <NavSlide></NavSlide>
         </div>
@@ -225,8 +248,12 @@ export default {
             LifeList:[],
             singalPoster:"/imgs/poster/0.jpg",
             PhoneGoods:{},
+            MathineGoods:{},
+            MathineImgGroup:[],
             AiGoods:{},
             AiImgGroup:[],
+            Nearby:{},
+            NearbyImgGroup:[],
             VideoGroup:[],
             SecGroup:[]
         }
@@ -250,9 +277,15 @@ export default {
             this.HeadsetList = res["headset-list"]
             this.LifeList    = res["life-list"]
             this.PhoneGoods  = res["Phone-goods"]
+            this.MathineGoods = res["Machine-goods"],
+            this.MathineImgGroup = [{"id":"0","imgSrc":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/f256b81e4233333692eece77ed06ebc2.jpg?thumb=1&w=468&h=600&f=webp&q=90"},
+                                    {"id":"1","imgSrc":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e22cf675726deb5eb728f2ccd4cbeafd.jpg?thumb=1&w=468&h=600&f=webp&q=90"}]
             this.AiGoods     = res["Ai-goods"]
             this.AiImgGroup  = [{"id":"0","imgSrc":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/45c23f5b9a927b2dc49c25277e07727c.jpg?thumb=1&w=468&h=600&f=webp&q=90"},
                                 {"id":"1","imgSrc":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a660ce095e8f553a9ed1515265f4e9fc.jpg?thumb=1&w=468&h=600&f=webp&q=90"}]
+            this.NearbyGoods = res["nearby"]
+            this.NearbyImgGroup = [{"id":"0","imgSrc":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/37dc0898c2624b4130da4631f2d9a675.jpg?thumb=1&w=468&h=600&f=webp&q=90"},
+                                    {"id":"1","imgSrc":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/582984b9c56cf3c48382a81528a4dfdf.jpg?thumb=1&w=468&h=600&f=webp&q=90"}]
             this.VideoGroup  = res["HomeVideo"]
             this.SecGroup    = res["SecKillGoods"]
 

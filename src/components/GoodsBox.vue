@@ -41,7 +41,7 @@
                                 <span class="oldPrice" v-show="item.OldPrice">{{item.OldPrice}}</span>
                             </p>
                         </a>
-                        <a class="complex" href="" v-show="modal == 2 && item.id == 7">
+                        <a class="complex" href="" v-if="modal == 2 && item.id == 7">
                             <div class="complex-wrapper">
                                 <div class="left">
                                     <h3 class="title">{{item.title}}</h3>
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a class="complex" href="" v-show="modal == 2 && item.id == 7">
+                        <a class="complex" href="" v-if="modal == 2 && item.id == 7">
                             <div class="complex-wrapper">
                                 <div class="left">
                                     <h3 class="more">浏览更多</h3>
@@ -101,7 +101,6 @@ export default {
     watch:{
         lists(newVal){
             this.GoodsList = JSON.parse(JSON.stringify(newVal))
-            console.log(this.GoodsList)
         }
     },
     methods:{
@@ -204,6 +203,7 @@ export default {
                     .singal{
                         height: 260px;
                         padding: 20px 0;
+                        width: 234px;
                         float: left;
                         background-color: #fff;
                         color: #757575;
@@ -219,12 +219,17 @@ export default {
                                 margin: -10px 0px 5px 30px;
                                 text-align: left;
                                 color: #757575;
+                                width: 94px;
                                 .title{
                                     color: #333;
                                     font-size: 16px;
+                                    height: 50px;
+                                    margin-left: 0px;
+                                    white-space: normal;
                                     font-weight: 400;
                                     margin-bottom: 5px;
                                     margin-top: 10px;
+                                    width: 94px;
                                 }
                                 .price{
                                     font-size: 14px;
