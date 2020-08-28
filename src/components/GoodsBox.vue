@@ -41,7 +41,7 @@
                                 <span class="oldPrice" v-show="item.OldPrice">{{item.OldPrice}}</span>
                             </p>
                         </a>
-                        <a class="complex" href="" v-if="modal == 2 && item.id == 7">
+                        <a class="complex" href="javascript:;" v-if="modal == 2 && item.id == 7">
                             <div class="complex-wrapper">
                                 <div class="left">
                                     <h3 class="title">{{item.title}}</h3>
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a class="complex" href="" v-if="modal == 2 && item.id == 7">
+                        <a class="complex" href="javascript:;" v-if="modal == 2 && item.id == 7">
                             <div class="complex-wrapper">
                                 <div class="left">
                                     <h3 class="more">浏览更多</h3>
@@ -137,7 +137,7 @@ export default {
                         margin: 0 0 0 30px;
                         cursor: pointer;
                         border-bottom: 2px solid transparent;
-                        transition: color .3s;
+                        transition: color .3s , border-bottom .3s;
                         .iconfont{
                             margin-left: 10px;
                             font-size: 20px;
@@ -145,7 +145,7 @@ export default {
                         }
                         &:hover{
                             color: #ff6700;
-                            transition: color .3s;
+                            transition: color .3s ;
                         }
                     }
                     .hoverChange{
@@ -158,14 +158,14 @@ export default {
         }
         .goods-container{
             position: relative;
-            a{
-                transition: box-shadow .3s , transform .3s;
-                &:hover{
-                    transform: translate(0,-2px);
-                    box-shadow: 0 15px 30px rgba(0,0,0,.1);
-                    transition: box-shadow .3s , transform .3s;
-                }
-            }
+            // a{
+            //     transition: box-shadow .3s , transform .3s;
+            //     &:hover{
+            //         transform: translate(0,-2px);
+            //         box-shadow: 0 15px 30px rgba(0,0,0,.1);
+            //         transition: box-shadow .3s , transform .3s;
+            //     }
+            // }
             .img-wrapper{
                 float: left;
                 margin-bottom: 14px;
@@ -173,7 +173,13 @@ export default {
                 a{
                     display: inline-block;
                     height: 614px;
-                    height: 234px;
+                    width: 234px;
+                    transition: box-shadow .3s , transform .3s;
+                    &:hover{
+                        transform: translate(0,-2px);
+                        box-shadow: 0 15px 30px rgba(0,0,0,.1);
+                        transition: box-shadow .3s , transform .3s;
+                    }
                 }
                 .singPoster{
                     height: 614px;
@@ -207,6 +213,18 @@ export default {
                         float: left;
                         background-color: #fff;
                         color: #757575;
+                    }
+                     a{
+                        display: inline-block;
+                        height: 143px;
+                        width: 234px;
+                        margin-bottom: 14px;
+                        transition: box-shadow .3s , transform .3s;
+                        &:hover{
+                            transform: translate(0,-2px);
+                            box-shadow: 0 15px 30px rgba(0,0,0,.1);
+                            transition: box-shadow .3s , transform .3s;
+                        }
                     }
                     .complex{
                         .complex-wrapper{
