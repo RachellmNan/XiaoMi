@@ -4,10 +4,11 @@
             <div class="container">
                 <div class="swiper-box">
                     <swiper ref="mySwiper" :options="swiperOptions">
-                        <swiper-slide><img src="/imgs/banner/swiper1.png"></swiper-slide>
-                        <swiper-slide><img src="/imgs/banner/swiper2.png"></swiper-slide>
-                        <swiper-slide><img src="/imgs/banner/swiper3.png"></swiper-slide>
-                        <swiper-slide><img src="/imgs/banner/swiper4.png"></swiper-slide>
+                        <swiper-slide v-for="item of slideList" :key="item.id">
+                            <a :href="'/#/product/'+item.id">
+                                <img :src="item.img">
+                            </a>
+                        </swiper-slide>
                         <div class="swiper-pagination" slot="pagination"></div>
                     </swiper>
                     <div class="swiper-button-prev"></div>
@@ -176,6 +177,11 @@
                 </a>
             </div>
             <goods-box :lists="PhoneGoods"  modal="1" :singalPoster="singalPoster" title="手机"></goods-box>
+            <modal btnType=1 title="提示" v-if="false">
+                <template v-slot:body-content>
+                    <p>商品添加成功</p>
+                </template>
+            </modal>
             <div class="banner-box">
                 <a href="javascript:;">
                     <img src="/imgs/banner/machine.jpg" alt="">
@@ -210,6 +216,7 @@ import SecKill from '../components/SecKill'
 import GoodsBox from '../components/GoodsBox'
 import NavSlide from '../components/NavSlide'
 import VideoWrapper from '../components/VideoWrapper'
+import Modal from '../components/Modal'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 export default {
     name:'Index',
@@ -219,7 +226,8 @@ export default {
         SecKill,
         GoodsBox,
         NavSlide,
-        VideoWrapper
+        VideoWrapper,
+        Modal
     },
     data(){
         return {
@@ -236,6 +244,24 @@ export default {
                 autoplay:true,
                 delay:3000
             },
+            slideList:[
+                {
+                    id:'42',
+                    img:'/imgs/banner/swiper1.jpg'
+                },{
+                    id:'45',
+                    img:'/imgs/banner/swiper2.jpg'
+                },{
+                    id:'46',
+                    img:'/imgs/banner/swiper3.jpg'
+                },{
+                    id:'47',
+                    img:'/imgs/banner/swiper4.jpg'
+                },{
+                    id:'48',
+                    img:'/imgs/banner/swiper5.jpg'
+                }
+            ],
             PhoneList:[],
             TvList:[],
             MacList:[],
@@ -252,10 +278,11 @@ export default {
             MathineImgGroup:[],
             AiGoods:{},
             AiImgGroup:[],
-            Nearby:{},
+            NearbyGoods:{},
             NearbyImgGroup:[],
             VideoGroup:[],
-            SecGroup:[]
+            SecGroup:[],
+            btnType : 1
         }
     },
     computed:{
@@ -290,6 +317,17 @@ export default {
             this.SecGroup    = res["SecKillGoods"]
 
         })
+        // this.axios.defaults.baseURL = 'api'
+        // this.axios.get('/products',{
+        //     params:{
+        //         categoryId:100012,
+        //         pageSize:14
+        //     }
+        // }).then((res)=>{
+        //     res.list = res.list.slice(6,14)
+        //     // this.PhoneGoods = res.list
+        //     console.log(res)
+        // })
     }
 }
 </script>

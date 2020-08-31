@@ -39,6 +39,7 @@
                             <p class="price-wrapper">
                                 <span class="newPrice">{{item.DisPrice}}</span>
                                 <span class="oldPrice" v-show="item.OldPrice">{{item.OldPrice}}</span>
+                                <span :class="{carticon:modal == 1}" @click="addCart"></span>
                             </p>
                         </a>
                         <a class="complex" href="javascript:;" v-if="modal == 2 && item.id == 7">
@@ -107,6 +108,10 @@ export default {
         // 当鼠标触碰tag时变色
         changeColor(){
             this.hoverId = event.target.id
+        },
+        // 将物品添加购物车，向父组件发送事件显示弹窗
+        addCart(){
+            
         }
     }
 }
@@ -309,15 +314,28 @@ export default {
                         margin: 0px 10px 10px;
                     }
                     .price-wrapper{
-                        margin: 0 10px 14px;
+                        // margin: 0 10px 14px;
                         font-size: 14px;
                         text-align: center;
+                        line-height: 21px;
                         .newPrice{
                             color: #ff6700;
-                            margin-right: 15px;
+
+                           
                         }
                         .oldPrice{
+                            margin-left: 15px;
                             text-decoration: line-through;
+
+                        }
+                        .carticon{
+                            width: 20px;
+                            height: 14px;
+                            margin-left: 10px;
+                            display: inline-block;
+                            background: url('/imgs/icon-cart-hover.png') no-repeat center;
+                            background-size: contain;
+                            vertical-align: middle;
                         }
                     }
                     &::after{
