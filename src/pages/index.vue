@@ -21,7 +21,7 @@
                             <div class="category-extend">
                                 <ul class="extend-wraper" v-for="(items,index) of PhoneList" :key="index">
                                     <li class="extend-item" v-for="item of items" :key=item.id>
-                                        <img :src="item.img" alt="">
+                                        <img v-lazy="item.img" alt="">
                                         <span>{{item.title}}</span>
                                     </li>
                                 </ul>
@@ -32,7 +32,7 @@
                             <div class="category-extend">
                                 <ul class="extend-wraper" v-for="(items,index) of TvList" :key="index">
                                     <li class="extend-item" v-for="item of items" :key=item.id>
-                                        <img :src="item.img" alt="">
+                                        <img v-lazy="item.img" alt="">
                                         <span>{{item.title}}</span>
                                     </li>
                                 </ul>
@@ -43,7 +43,7 @@
                             <div class="category-extend">
                                 <ul class="extend-wraper" v-for="(items,index) of MacList" :key="index">
                                     <li class="extend-item" v-for="item of items" :key=item.id>
-                                        <img :src="item.img" alt="">
+                                        <img v-lazy="item.img" alt="">
                                         <span>{{item.title}}</span>
                                     </li>
                                 </ul>
@@ -54,7 +54,7 @@
                             <div class="category-extend">
                                 <ul class="extend-wraper" v-for="(items,index) of MachineList" :key="index">
                                     <li class="extend-item" v-for="item of items" :key=item.id>
-                                        <img :src="item.img" alt="">
+                                        <img v-lazy="item.img" alt="">
                                         <span>{{item.title}}</span>
                                     </li>
                                 </ul>
@@ -65,7 +65,7 @@
                             <div class="category-extend">
                                 <ul class="extend-wraper" v-for="(items,index) of WearList" :key="index">
                                     <li class="extend-item" v-for="item of items" :key=item.id>
-                                        <img :src="item.img" alt="">
+                                        <img v-lazy="item.img" alt="">
                                         <span>{{item.title}}</span>
                                     </li>
                                 </ul>
@@ -76,7 +76,7 @@
                             <div class="category-extend">
                                 <ul class="extend-wraper" v-for="(items,index) of RouterList" :key="index">
                                     <li class="extend-item" v-for="item of items" :key=item.id>
-                                        <img :src="item.img" alt="">
+                                        <img v-lazy="item.img" alt="">
                                         <span>{{item.title}}</span>
                                     </li>
                                 </ul>
@@ -87,7 +87,7 @@
                             <div class="category-extend">
                                 <ul class="extend-wraper" v-for="(items,index) of PartsList" :key="index">
                                     <li class="extend-item" v-for="item of items" :key=item.id>
-                                        <img :src="item.img" alt="">
+                                        <img v-lazy="item.img" alt="">
                                         <span>{{item.title}}</span>
                                     </li>
                                 </ul>
@@ -98,7 +98,7 @@
                             <div class="category-extend">
                                 <ul class="extend-wraper" v-for="(items,index) of HealthList" :key="index">
                                     <li class="extend-item" v-for="item of items" :key=item.id>
-                                        <img :src="item.img" alt="">
+                                        <img v-lazy="item.img" alt="">
                                         <span>{{item.title}}</span>
                                     </li>
                                 </ul>
@@ -109,7 +109,7 @@
                             <div class="category-extend">
                                 <ul class="extend-wraper" v-for="(items,index) of HeadsetList" :key="index">
                                     <li class="extend-item" v-for="item of items" :key=item.id>
-                                        <img :src="item.img" alt="">
+                                        <img v-lazy="item.img" alt="">
                                         <span>{{item.title}}</span>
                                     </li>
                                 </ul>
@@ -120,7 +120,7 @@
                             <div class="category-extend">
                                 <ul class="extend-wraper" v-for="(items,index) of LifeList" :key="index">
                                     <li class="extend-item" v-for="item of items" :key=item.id>
-                                        <img :src="item.img" alt="">
+                                        <img v-lazy="item.img" alt="">
                                         <span>{{item.title}}</span>
                                     </li>
                                 </ul>
@@ -156,14 +156,8 @@
                         </a>
                     </div>
                     <div class="banner-list">
-                        <a href="javascript:;">
-                            <img src="/imgs/banner/5.jpg" alt="">
-                        </a>
-                        <a href="javascript:;">
-                            <img src="/imgs/banner/6.jpg" alt="">
-                        </a>
-                        <a href="javascript:;">
-                            <img src="/imgs/banner/7.jpg" alt="">
+                        <a :href="'/#/product/'+item.id" v-for="item of adsList" :key="item.id">
+                            <img v-lazy="item.img" alt="">
                         </a>
                     </div>
                 </div>
@@ -176,8 +170,8 @@
                     <img src="/imgs/banner/phone.jpg" alt="">
                 </a>
             </div>
-            <goods-box :lists="PhoneGoods"  modal="1" :singalPoster="singalPoster" title="手机"></goods-box>
-            <modal btnType=1 title="提示" v-if="false">
+            <goods-box :lists="PhoneGoods"  modal="1" :singalPoster="singalPoster" title="手机" @modalstatus="modalstatus"></goods-box>
+            <modal btnType=1 title="提示" :showModal="showmodal" @modalstatus="modalstatus">
                 <template v-slot:body-content>
                     <p>商品添加成功</p>
                 </template>
@@ -262,6 +256,17 @@ export default {
                     img:'/imgs/banner/swiper5.jpg'
                 }
             ],
+            adsList:[{
+                    id:33,
+                    img:"/imgs/banner/ads-1.png"
+                },{
+                    id:48,
+                    img:"/imgs/banner/ads-2.jpg"
+                },{
+                    id:45,
+                    img:"/imgs/banner/ads-3.png"
+                }
+            ],
             PhoneList:[],
             TvList:[],
             MacList:[],
@@ -282,7 +287,14 @@ export default {
             NearbyImgGroup:[],
             VideoGroup:[],
             SecGroup:[],
-            btnType : 1
+            btnType : 1,
+            showmodal:false
+        }
+    },
+    methods:{
+        modalstatus(status){
+            this.showmodal = false
+            if(status) this.showmodal = true 
         }
     },
     computed:{
@@ -506,6 +518,7 @@ export default {
                 }
                 img{
                     width: 316px;
+                    height: 170px;
                 }
             }
             &::after{

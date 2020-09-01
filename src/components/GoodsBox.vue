@@ -32,14 +32,14 @@
                     <li class="goods-item" v-for="item of list.data" :key="item.id">
                         <a class="singal" href="javascript:;" v-show=" modal != 2 || item.id != 7">
                             <div class="goodsImg-wrapper">
-                                <img :src="item.img">
+                                <img v-lazy="item.img">
                             </div>
                             <h3 class="title">{{item.title}}</h3>
                             <p class="desc">{{item.desc}}</p>
                             <p class="price-wrapper">
-                                <span class="newPrice">{{item.DisPrice}}</span>
-                                <span class="oldPrice" v-show="item.OldPrice">{{item.OldPrice}}</span>
-                                <span :class="{carticon:modal == 1}" @click="addCart"></span>
+                                <span class="newPrice">{{item.DisPrice}}元</span>
+                                <span class="oldPrice" v-show="item.OldPrice">{{item.OldPrice}}元</span>
+                                <span :class="{carticon:modal == 1}" @click="addCart(item.id)"></span>
                             </p>
                         </a>
                         <a class="complex" href="javascript:;" v-if="modal == 2 && item.id == 7">
@@ -49,7 +49,7 @@
                                     <p class="price">{{item.DisPrice}}起</p>
                                 </div>
                                 <div class="right">
-                                    <img class="back_img" :src="item.img">
+                                    <img class="back_img" v-lazy="item.img">
                                 </div>
                             </div>
                         </a>
@@ -110,7 +110,15 @@ export default {
             this.hoverId = event.target.id
         },
         // 将物品添加购物车，向父组件发送事件显示弹窗
-        addCart(){
+        addCart(id){
+            this.axios.defaults.baseURL = '/api'
+            this.axios.post('/carts',{
+                productId:id,
+                selected:true
+            }).then(()=>{
+                this.$emit('modalstatus',true)
+                console.log('加入购物车')
+            })
             
         }
     }

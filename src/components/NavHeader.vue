@@ -17,7 +17,7 @@
                     <a href="javascript:;">Select Location</a>
                 </div>
                 <div class="user-menu">
-                    <a href="javascript:;" class="user-wrapper">1510188082 <span class="iconfont">&#xe687;</span></a><span>|</span>
+                    <a href="/#/login" class="user-wrapper" >登录<span class="iconfont">&#xe687;</span></a><span>|</span>
                     <a href="javascript:;">消息通知</a><span>|</span>
                     <a href="javascript:;">我的订单</a><span class="iconfont">&#xe687;</span>
                     <a href="javascript:;" class="cart">购物车<span class="cart-icon"></span></a>

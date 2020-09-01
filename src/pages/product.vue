@@ -1,12 +1,21 @@
 <template>
     <div class="product">
-        this is 
+        this is {{id}}
     </div>
 </template>
 
 <script>
 export default {
-    name:'Product'
+    name:'Product',
+    data(){
+        return {
+            id:''
+        }
+    },
+    mounted(){
+        console.dir(this.$route)
+        this.id = this.$route.params.id
+    }
 }
 </script>
 

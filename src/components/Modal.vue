@@ -1,23 +1,28 @@
 <template>
-    <div class="modal">
-        <div class="mask"></div>
-        <div class="modal-wrapper">
-            <div class="header">
-                <p>{{title}}</p>
-                <span class="iconfont">&#xe609;</span>
-            </div>
-            <div class="body">
-                <slot name="body-content"></slot>
-            </div>
-            <div class="footer">
-                <span class="tip" v-if="btnType == 1">查看购物车</span>
-                <div class="but-group" v-if="btnType == 2">
-                    <span class="submit">确定</span>
-                    <span class="cancel">取消</span>
+    <transition name="slide">
+        <div class="modal" v-if="showModal">
+            <div class="mask"></div>
+            <div class="modal-wrapper">
+                <div class="header">
+                    <p>{{title}}</p>
+                    <transition name="test">
+                        <span class="iconfont" @click="closeModal">&#xe609;</span>
+                    </transition>
+                    
+                </div>
+                <div class="body">
+                    <slot name="body-content"></slot>
+                </div>
+                <div class="footer">
+                    <span class="tip" v-if="btnType == 1" @click="goCart">查看购物车</span>
+                    <div class="but-group" v-if="btnType == 2">
+                        <span class="submit">确定</span>
+                        <span class="cancel">取消</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -31,6 +36,15 @@ export default {
         title:{
             type:String,
             defalut:''
+        },
+        showModal:Boolean
+    },
+    methods:{
+        closeModal(){
+            this.$emit('modalstatus',false)
+        },
+        goCart(){
+            
         }
     }
 }
@@ -44,6 +58,7 @@ export default {
         height: 100%;
         top: 0;
         left: 0;
+        transition: top 1s , opacity 1s;
         .mask{
             position: fixed;
             z-index: 101;
@@ -54,6 +69,13 @@ export default {
             left: 0;
             opacity: 0.5;
         }
+        &.slide-enter-active,&.slide-leave-active{
+            transition: top 1s , opacity 1s;
+        }
+        &.slide-enter,&.slide-leave-to{
+            top:-100%;
+            opacity: 0;
+        } 
         .modal-wrapper{
             position: absolute;
             z-index: 102;
@@ -72,13 +94,12 @@ export default {
                 p{
                     display: inline-block;
                 }
-                
                 .iconfont{
                     position: absolute;
                     top: 15px;
                     height: 30px;
                     line-height: 30px;
-                    width: 20px;
+                    width: 40px;
                     text-align: center;
                     right: 20px;
                     transition: transform .25s;
