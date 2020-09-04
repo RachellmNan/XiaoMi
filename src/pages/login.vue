@@ -58,6 +58,8 @@ export default {
                 username:this.username,
                 password:this.password
             }).then((res)=>{
+                this.userId = res.id
+                this.$cookie.set('userId',res.id,{expires:'7D'})
                 console.log('登录成功',res)
                 this.$router.push('/index')
             })
@@ -68,6 +70,7 @@ export default {
                 password:this.password,
                 email:`${this.username}@qq.com`
             }).then((res)=>{
+                alert('注册成功')
                 console.log('注册成功',res)
             })
         }

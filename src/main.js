@@ -4,6 +4,7 @@ import VueAxios from 'vue-axios'
 import App from './App.vue'
 import router from './router'
 import VueLazyload from 'vue-lazyload'
+import VueCookie from 'vue-cookie'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 import 'swiper/css/swiper.css'
@@ -14,7 +15,7 @@ Vue.use(VueAwesomeSwiper)
 Vue.use(VueLazyload,{
   loading:'/imgs/loading-svg/loading-spinning-bubbles.svg'
 })
-
+Vue.use(VueCookie)
 
 Vue.config.productionTip = false
 
