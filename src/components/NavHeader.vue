@@ -17,10 +17,12 @@
                     <a href="javascript:;">Select Location</a>
                 </div>
                 <div class="user-menu">
-                    <a href="/#/login" class="user-wrapper" >登录<span class="iconfont">&#xe687;</span></a><span>|</span>
+                    <a href="javascript:;" v-if="username != ''" class="username">{{username}}</a>
+                    <a href="" v-if="username != ''">退出登录</a>
+                    <a href="/#/login" class="user-wrapper" v-if="username == ''">登录<span class="iconfont">&#xe687;</span></a><span>|</span>
                     <a href="javascript:;">消息通知</a><span>|</span>
                     <a href="javascript:;">我的订单</a><span class="iconfont">&#xe687;</span>
-                    <a href="javascript:;" class="cart">购物车<span class="cart-icon"></span></a>
+                    <a href="javascript:;" class="cart"><span class="cart-icon iconfont">&#xe610;</span>购物车（5）</a>
                 </div>
             </div>
         </div>
@@ -166,6 +168,7 @@
 </template>
 
 <script>
+// import { mapState } from 'vuex';
 export default {
     name:'NavHeader',
     data(){
@@ -192,6 +195,12 @@ export default {
                 console.log(this.ProductList,1)
             })
         }
+    },
+    computed:{
+        username (){
+            return this.$store.state.username
+        },
+        // ...mapState(['username'])
     },
     mounted(){
         this.getProductList()
@@ -222,6 +231,10 @@ export default {
                     color: #424242;
                 }
                 .user-menu{
+                    line-height: 40px;
+                    .username{
+                        margin-right: 12px;
+                    }
                     .iconfont{
                         display: inline-block;
                         width: 20px;
@@ -230,6 +243,27 @@ export default {
                         line-height: 20px;
                         vertical-align: middle;
                         cursor: pointer;
+                    }
+                    .cart{
+                        text-align: center;
+                        display: inline-block;
+                        background-color: rgb(66, 66, 66);
+                        width: 120px;
+                        height: 40px;
+                        &:hover{
+                            background-color: #fff;
+                            color: #ff6700;
+                            .iconfont{
+                                color: #ff6700;
+                            }
+                        }
+                        .iconfont{
+                            display: inline-block;
+                            line-height: 40px;
+                            font-size: 16px;
+                            font-weight: 800;
+                            // vertical-align: middle;
+                        }
                     }
                 }
                 

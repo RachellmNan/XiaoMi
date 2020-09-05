@@ -112,9 +112,13 @@ export default {
         // 将物品添加购物车，向父组件发送事件显示弹窗
         addCart(id){
             this.axios.defaults.baseURL = '/api'
-            this.axios.post('/carts',{
-                productId:id,
-                selected:true
+            this.axios({
+                method:'post',
+                url:'/carts',
+                data:{
+                    productId:id,
+                    selected:true
+                }
             }).then(()=>{
                 this.$emit('modalstatus',true)
                 console.log('加入购物车')

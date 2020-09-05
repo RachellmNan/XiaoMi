@@ -5,33 +5,37 @@
 </template>
 
 <script>
-// import {mapActions} from 'vuex'
+import {mapActions} from 'vuex'
 export default {
   name: 'App',
-  // methods:{
-  //   //获取用户登录信息
-  //   getUser(){
-  //     this.axios.get('/user').then((res={})=>{
-  //       //保存到Vuex
-  //       // this.$store.dispatch('saveUserName',res.username)
-  //       this.saveUserName(res.username)
-  //     })
-  //   },
-  //   getCartCount(){
-  //     this.axios.get('/carts/products/sum').then((res=0)=>{
-  //       this.$store.dispatch('saveCartCount',res)
-  //     })
-  //   },
-  //   ...mapActions({
-  //     saveUserName:'saveUserName'
-  //   })
-  // },
-  // mounted(){
-  //   if(this.$cookie.get('userId')){
-  //     this.getUser()
-  //     this.getCartCount()
-  //   } 
-  // },
+  methods:{
+    //获取用户登录信息
+    getUser(){
+      this.axios.get('/user').then((res={})=>{
+        //保存到Vuex
+        // this.$store.dispatch('saveUserName',res.username)
+        this.saveUserName(res.username)
+      })
+    },
+    getCartCount(){
+      this.axios({
+        method:'get',
+        url:'/carts/products/sum'
+      }).then((res)=>{
+        this.$store.dispatch('saveCartCount',res)
+      })
+    },
+    ...mapActions({
+      saveUserName:'saveUserName'
+    })
+  },
+  mounted(){
+    // if(this.$cookie.get('userId')){
+      this.axios.defaults.baseURL = '/api'
+      this.getUser()
+      this.getCartCount()
+    // } 
+  }
   
 }
 </script>

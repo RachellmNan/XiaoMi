@@ -1,12 +1,21 @@
 <template>
     <div class="product">
-        this is {{id}}
+        <product-param></product-param>
+        <p class="test">test</p>
+        <p class="test">test</p>
+        <p class="test">test</p>
+        <p class="test">test</p>
+        <p class="test">test</p>
     </div>
 </template>
 
 <script>
+import ProductParam from '../components/ProductParam'
 export default {
     name:'Product',
+    components:{
+        ProductParam
+    },
     data(){
         return {
             id:''
@@ -20,5 +29,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+    .test{
+        height: 150px;
+    }
 </style>

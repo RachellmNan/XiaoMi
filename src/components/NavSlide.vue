@@ -83,12 +83,12 @@ export default {
         .help-list{
             position: fixed;
             bottom: 102px;
-            right: 48px;
+            right: 43px;
         }
         .cart-list{
             position: fixed;
             bottom: 40px;
-            right: 48px;
+            right: 43px;
         }
         .help-item{
             background-color: #fff;

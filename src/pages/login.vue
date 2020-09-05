@@ -59,7 +59,7 @@ export default {
                 password:this.password
             }).then((res)=>{
                 this.userId = res.id
-                this.$cookie.set('userId',res.id,{expires:'7D'})
+                this.$cookie.set('userId',res.id,{expires:'1D'})
                 console.log('登录成功',res)
                 this.$router.push('/index')
             })
