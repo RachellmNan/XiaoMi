@@ -22,7 +22,7 @@
                     <a href="/#/login" class="user-wrapper" v-if="username == ''">登录<span class="iconfont">&#xe687;</span></a><span>|</span>
                     <a href="javascript:;">消息通知</a><span>|</span>
                     <a href="javascript:;">我的订单</a><span class="iconfont">&#xe687;</span>
-                    <a href="javascript:;" class="cart"><span class="cart-icon iconfont">&#xe610;</span>购物车（5）</a>
+                    <a href="javascript:;" class="cart"><span class="cart-icon iconfont">&#xe610;</span>购物车（{{cartCount}}）</a>
                 </div>
             </div>
         </div>
@@ -200,6 +200,9 @@ export default {
         username (){
             return this.$store.state.username
         },
+        cartCount(){
+            return this.$store.state.cartCount
+        }
         // ...mapState(['username'])
     },
     mounted(){

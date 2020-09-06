@@ -44,7 +44,7 @@ export default {
             this.$emit('modalstatus',false)
         },
         goCart(){
-            
+            this.$router.push('/cart')
         }
     }
 }
@@ -131,6 +131,7 @@ export default {
                     line-height: 35px;
                 }
                 .tip{
+                    cursor: pointer;
                     background-color: #ff6700;
                 }
                 .submit{

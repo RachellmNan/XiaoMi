@@ -119,11 +119,11 @@ export default {
                     productId:id,
                     selected:true
                 }
-            }).then(()=>{
+            }).then((res)=>{
+                this.$store.dispatch('saveCartCount',res.cartTotalQuantity)
                 this.$emit('modalstatus',true)
                 console.log('加入购物车')
             })
-            
         }
     }
 }

@@ -10,8 +10,8 @@
                     <a href="javascript:;" class="info mark">参数</a><span>|</span>
                     <a href="javascript:;" class="mark">F码通道</a><span>|</span>
                     <a href="javascript:;" class="mark">咨询客服</a><span>|</span>
-                    <a href="javascript:;" class="mark">用户评价</a><span>|</span>
-                    <a href="javascript:;" class="buy" @click="buy">立即购买</a>
+                    <a href="javascript:;" class="mark">用户评价</a><span v-if="showButton">|</span>
+                    <a href="javascript:;" class="buy" @click="buy" v-if="showButton">立即购买</a>
                 </div>
             </div>
         </div>
@@ -25,6 +25,10 @@ export default {
         title:{
             type:String,
             default : ''
+        },
+        showButton:{
+            type:Number,
+            default : 1
         }
     },
     data(){

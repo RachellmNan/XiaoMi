@@ -90,6 +90,7 @@ export default {
                     productId:id
                 }
             }).then((res)=>{
+                console.log(res)
                 this.productList = res
             })
         }
