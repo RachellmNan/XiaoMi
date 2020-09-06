@@ -28,7 +28,7 @@
                             <div class="play-icon">
                                 <span @click="rePlay" class="iconfont" v-show="!isPlaying" :id=item.id>&#xe631;</span>
                             </div>
-                            <video  @playing="isPlaying=true" @pause="isPlaying=false" :src=item.VideoSrc   controls></video>
+                            <video  @playing="isPlaying=true" @pause="isPlaying=false" :src=item.VideoSrc controls="controls"></video>
                         </div>  
                     </div>
                 </li>
@@ -205,9 +205,10 @@ export default {
                                 font-size: 68px;
                             }
                         }
-                        
                         video{
                             width: 880px;
+                            object-fit: cover;
+                            outline: none ;
                         }
                     }  
                 }

@@ -327,8 +327,8 @@ export default {
                                     {"id":"1","imgSrc":"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/582984b9c56cf3c48382a81528a4dfdf.jpg?thumb=1&w=468&h=600&f=webp&q=90"}]
             this.VideoGroup  = res["HomeVideo"]
             this.SecGroup    = res["SecKillGoods"]
-
         })
+        this.axios.defaults.baseURL = '/api'
         // this.axios.defaults.baseURL = 'api'
         // this.axios.get('/products',{
         //     params:{

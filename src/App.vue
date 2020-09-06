@@ -21,7 +21,7 @@ export default {
       this.axios({
         method:'get',
         url:'/carts/products/sum'
-      }).then((res)=>{
+      }).then((res=0)=>{
         this.$store.dispatch('saveCartCount',res)
       })
     },

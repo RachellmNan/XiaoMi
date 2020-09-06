@@ -3,7 +3,7 @@
         <div class="param-wrapper" :class="{fixContainier:fix}">
             <div class="param-container" >
                 <div class="title-wrapper">
-                    <p>小米10 青春版 5G</p>
+                    <p>{{title}}</p>
                 </div>
                 <div class="options-wrapper">
                     <a href="javascript:;" class="mark">概述</a><span>|</span>
@@ -11,7 +11,7 @@
                     <a href="javascript:;" class="mark">F码通道</a><span>|</span>
                     <a href="javascript:;" class="mark">咨询客服</a><span>|</span>
                     <a href="javascript:;" class="mark">用户评价</a><span>|</span>
-                    <a href="javascript:;" class="buy">立即购买</a>
+                    <a href="javascript:;" class="buy" @click="buy">立即购买</a>
                 </div>
             </div>
         </div>
@@ -21,6 +21,12 @@
 <script>
 export default {
     name:'ProductParam',
+    props:{
+        title:{
+            type:String,
+            default : ''
+        }
+    },
     data(){
         return {
             fix : false
@@ -30,6 +36,10 @@ export default {
         getHeight(){
             let top = window.pageYOffset || document.documentElement.offsetTop || document.body.offsetTop
             this.fix = top > 140
+        },
+        buy(){
+            let id = this.$route.params.id
+            this.$router.push(`/detail/${id}`)
         }
     },
     mounted(){
@@ -48,8 +58,10 @@ export default {
         box-shadow: 0px 5px 5px rgba(0,0,0,.07);
         height: 60px;
         .param-wrapper{
+            width: 100%;
             &.fixContainier{
                 position: fixed;
+                z-index: 10;
                 top: 0;
                 left: 0;
                 width: 100%;
