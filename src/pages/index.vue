@@ -329,6 +329,7 @@ export default {
             this.SecGroup    = res["SecKillGoods"]
         })
         this.axios.defaults.baseURL = '/api'
+        console.log(this.$route)
         // this.axios.defaults.baseURL = 'api'
         // this.axios.get('/products',{
         //     params:{

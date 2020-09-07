@@ -8,6 +8,9 @@ import VueCookie from 'vue-cookie'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import store from './store/index'
 
+import {Message} from 'element-ui'
+// import 'element-ui/lib/theme-chalk/index.css';
+
 import 'swiper/css/swiper.css'
 import './assets/iconfont.css';
 
@@ -17,6 +20,8 @@ Vue.use(VueLazyload,{
   loading:'/imgs/loading-svg/loading-spinning-bubbles.svg'
 })
 Vue.use(VueCookie)
+Vue.use(Message)
+Vue.prototype.$message = Message
 
 Vue.config.productionTip = false
 
@@ -33,13 +38,17 @@ axios.interceptors.response.use(function(response){
   }else if(res.status==10){
     // 在其它页面未登录 ，跳转到登录页面
     if(hashpath!='#/index'){
-      console.log("hash error: "+hashpath)
       window.location.href = '/#/login'; 
     }  
     return Promise.reject(res);
   }else{
-    alert(res.msg)
-    // Message.warning(res.msg);
+    // this.$message({
+    //   showClose:true,
+    //   type:'warning',
+    //   message:`${res.msg}` 
+    // })
+    // alert(res.msg)
+    Message.warning(res.msg);
     return Promise.reject(res);
   }
 });

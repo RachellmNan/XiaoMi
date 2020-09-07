@@ -18,7 +18,7 @@
                 </div>
                 <div class="user-menu">
                     <a href="javascript:;" v-if="username != ''" class="username">{{username}}</a>
-                    <a href="" v-if="username != ''">退出登录</a>
+                    <a href="" v-if="username != ''" @click="logout">退出登录</a>
                     <a href="/#/login" class="user-wrapper" v-if="username == ''">登录<span class="iconfont">&#xe687;</span></a><span>|</span>
                     <a href="javascript:;">消息通知</a><span>|</span>
                     <a href="javascript:;">我的订单</a><span class="iconfont">&#xe687;</span>
@@ -197,6 +197,14 @@ export default {
         },
         goCart(){
             this.$router.push('/cart')
+        },
+        logout(){
+            this.axios.post('/user/logout').then(()=>{
+                this.$message.success('退出成功')
+                this.$cookie.set('userId','',{expires:'-1'})
+                this.$store.dispatch('saveUserName','')
+                this.$store.dispatch('saveCartCount','')
+            })
         }
     },
     computed:{

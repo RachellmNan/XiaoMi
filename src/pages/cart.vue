@@ -100,7 +100,10 @@ export default {
                 })
             }else if( comand == '-'){
                 quantity--
-                if(quantity<1) alert('购买数量必须大与1')
+                if(quantity<1) this.$message({
+                    showClose:true,
+                    type:'warning',
+                    message:'购买数量必须大于1'}) 
                 if(quantity>=1){
                     this.axios.put(`/carts/${id}`,{
                         quantity,
@@ -118,6 +121,7 @@ export default {
                     productId:id
                 }
             }).then((res)=>{
+                this.$message.success('删除成功')
                 this.renderCommon(res)
             })
         },
@@ -147,6 +151,7 @@ export default {
         unSelctAll(){
             this.axios.put('/carts/unSelectAll').then((res)=>{
                 this.renderCommon(res)
+                
             })
         },
         SelctAllStatus(){
@@ -165,7 +170,7 @@ export default {
             })
         },
         submit(){
-            this.$router.push('/order/confirm')
+            if(this.allowSubmit) this.$router.push('/order/confirm')
         }
     },
     mounted(){
