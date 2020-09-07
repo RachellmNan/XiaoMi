@@ -128,13 +128,6 @@ export default {
                 this.$router.push('/cart')
             })
         },
-        // changeVersion(){
-
-        // },
-        // changeColor(){
-        //     this.choserColor = event.target.innerText 
-        //     event.target.id == 
-        // }
     },
     mounted(){
         this.getProduct()

@@ -141,9 +141,10 @@ export default {
 
 <style lang="scss">
 @import '../assets/scss/config.scss';
+.NavFooter{background-color: #fff;width: 100%;}
     .container{
         width: 1226px;
-        margin: auto;
+        padding: auto;
         .service{
             padding: 27px 0;
             display: flex;

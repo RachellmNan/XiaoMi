@@ -117,12 +117,13 @@ export default {
                 url:'/carts',
                 data:{
                     productId:id,
-                    selected:true
+                    selected:false
                 }
             }).then((res)=>{
                 this.$store.dispatch('saveCartCount',res.cartTotalQuantity)
                 this.$emit('modalstatus',true)
-                console.log('加入购物车')
+            }).catch(()=>{
+                this.$emit('modalstatus',true)
             })
         }
     }
