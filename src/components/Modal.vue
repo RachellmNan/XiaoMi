@@ -16,7 +16,7 @@
                 <div class="footer">
                     <span class="tip" v-if="btnType == 1" @click="goCart">查看购物车</span>
                     <div class="but-group" v-if="btnType == 2">
-                        <span class="submit" @click="$emit('commit-address',false)">确定</span>
+                        <span class="submit" @click="$emit('commit-address','commit')">确定</span>
                         <span class="cancel" @click="$emit('cancel-commit',false)">取消</span>
                     </div>
                 </div>
@@ -46,7 +46,7 @@ export default {
     },
     methods:{
         closeModal(){
-            this.$emit('modalstatus',false)
+            this.$emit('iconClose')
         },
         goCart(){
             this.$router.push('/cart')

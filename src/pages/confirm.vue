@@ -1,6 +1,6 @@
 <template>
     <div class="confirm">
-        <modal :showModal="showModal" btnType=2 title="添加收货地址" @cancel-commit="cancelCommit" @commit-address="commitAddress" @modalstatus="showModal = false">
+        <modal :showModal="showModal" btnType=2 title="添加收货地址" @cancel-commit="cancelCommit" @commit-address="commitAddress" @modalstatus="showModal = false" @iconClose="iconClose">
             <template v-slot:body-content>
                 <div class="edit-wrapper">
                     <div class="user-group">
@@ -54,8 +54,8 @@
                             </div>
                         </div>
                         <div class="option-wrapper">
-                            <span class="change iconfont" >&#xe7cd;</span>
-                            <span class="del iconfont" @click="delAddress">&#xe744;</span>
+                            <span class="change iconfont" @click="changeAddress(item)">&#xe7cd;</span>
+                            <span class="del iconfont" @click="delAddress(item.id)">&#xe744;</span>
                         </div>
                     </div>
                     <div class="add-address-wrapper" @click="showModal=true">
@@ -160,6 +160,8 @@ export default {
             receiverDistrict:'',
             receiverAddress:'',
             receiverZip:'',
+            command:'',
+            id:''
         }
     },
     methods:{
@@ -192,7 +194,7 @@ export default {
 
         },
         // 增加地址
-        commitAddress(){
+        commitAddress(command){
             let infoItem = {
                 'receiverName':this.receiverName, 
                 'receiverMobile':this.receiverMobile,
@@ -204,6 +206,7 @@ export default {
             }
             let {receiverName,receiverMobile,receiverProvince,receiverCity,receiverDistrict,receiverAddress,receiverZip} = infoItem
             let errMsg = ''
+            command = this.command
             if(receiverName && receiverMobile && receiverProvince && receiverCity && receiverDistrict && receiverAddress && receiverZip){
                 let regName = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/
                 let regPhone = /^1[3456789]\d{9}$/
@@ -236,24 +239,44 @@ export default {
             }
             // errMsg若为false 代表没有异常 可以发送增加地址请求
             if(!errMsg){
-                this.axios.post('/shippings',{
-                    receiverName,
-                    receiverMobile,
-                    receiverProvince,
-                    receiverCity,
-                    receiverDistrict,
-                    receiverAddress,
-                    receiverZip,
-                }).then((res)=>{
-                    console.log(res)
-                    this.getAddress()
-                    this.showModal = false
-                })
+                if(command == ''){
+                    this.axios.post('/shippings',{
+                        receiverName,
+                        receiverMobile,
+                        receiverProvince,
+                        receiverCity,
+                        receiverDistrict,
+                        receiverAddress,
+                        receiverZip,
+                    }).then(()=>{
+                        this.getAddress()
+                        // 将地址信息清空
+                        this.clear()
+                    })
+                }else if(command == 'change'){
+                    this.axios.put(`/shippings/${this.id}`,{
+                        receiverName:this.receiverName, 
+                        receiverMobile:this.receiverMobile,
+                        receiverProvince:this.receiverProvince,
+                        receiverCity:this.receiverCity,
+                        receiverDistrict:this.receiverDistrict,
+                        receiverAddress:this.receiverAddress,
+                        receiverZip:this.receiverZip
+                    }).then(()=>{
+                        this.getAddress()
+                        this.id = ''
+                        this.command = ''
+                        // 将地址信息清空
+                        this.clear()
+                    })
+                }
+                
             }
         },
         // 取消地址提交
         cancelCommit(){
             this.showModal = false
+            this.clear()
         },
         choseAddress(target){
             this.selectedAddress = target
@@ -262,12 +285,41 @@ export default {
         modalstatus(status){
             this.showModal = status
         },
-        changeAddress(){
-            console.log('changeAddress')
+        // 修改地址
+        changeAddress(item){
+            this.receiverName = item.receiverName 
+            this.receiverMobile = item.receiverMobile
+            this.receiverProvince = item.receiverProvince
+            this.receiverCity = item.receiverCity
+            this.receiverDistrict = item.receiverDistrict
+            this.receiverAddress = item.receiverAddress 
+            this.receiverZip = item.receiverZip
+            this.showModal = true
+            this.command = 'change'
+            this.id = item.id
         },
-        delAddress(){
-            
-            console.log('delAddress')
+        delAddress(shippingId){
+            this.axios.delete(`/shippings/${shippingId}`,{
+                params:{
+                    shippingId
+                }
+            }).then(()=>{
+                this.getAddress()
+            })
+        },
+        // 将所有地址信息置为空
+        clear(){
+            this.showModal = false
+            this.receiverName = ''
+            this.receiverMobile = ''
+            this.receiverProvince = ''
+            this.receiverCity = ''
+            this.receiverDistrict = ''
+            this.receiverAddress = ''
+            this.receiverZip = ''
+        },
+        iconClose(){
+            this.clear()
         }
     },
     mounted(){
