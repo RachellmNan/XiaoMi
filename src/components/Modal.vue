@@ -16,8 +16,8 @@
                 <div class="footer">
                     <span class="tip" v-if="btnType == 1" @click="goCart">查看购物车</span>
                     <div class="but-group" v-if="btnType == 2">
-                        <span class="submit">确定</span>
-                        <span class="cancel">取消</span>
+                        <span class="submit" @click="$emit('commit-address',false)">确定</span>
+                        <span class="cancel" @click="$emit('cancel-commit',false)">取消</span>
                     </div>
                 </div>
             </div>
@@ -38,6 +38,11 @@ export default {
             defalut:''
         },
         showModal:Boolean
+    },
+    data(){
+        return {
+
+        }
     },
     methods:{
         closeModal(){
@@ -81,7 +86,7 @@ export default {
             z-index: 102;
             left: 50%;
             top: 40%;
-            width: 550px;
+            width: 660px;
             transform: translate(-50%,-50%);
             background-color: #fff;
             .header{
@@ -112,7 +117,7 @@ export default {
                 }
             }
             .body{
-                padding: 42px 40px 54px;
+                padding: 20px;
                 font-size: 14px;
                 p{
                     font-size: 16px;
@@ -137,9 +142,11 @@ export default {
                 .submit{
                     background-color: #ff6700;
                     margin-right: 50px;
+                    cursor: pointer;
                 }
                 .cancel{
                     background-color: #656464;
+                    cursor: pointer;
                 }
             }
         }

@@ -199,11 +199,13 @@ export default {
             this.$router.push('/cart')
         },
         logout(){
-            this.axios.post('/user/logout').then(()=>{
+            console.log(1)
+            this.axios.post('/user/logout').then((res)=>{
+                console.log(res)
                 this.$message.success('退出成功')
                 this.$cookie.set('userId','',{expires:'-1'})
                 this.$store.dispatch('saveUserName','')
-                this.$store.dispatch('saveCartCount','')
+                this.$store.dispatch('saveCartCount',0)
             })
         }
     },
