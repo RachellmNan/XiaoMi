@@ -148,8 +148,8 @@ export default {
         return {
             addressList: [], // 地址列表
             productList: [], // 购物车中选择的商品
-            cartTotalPrice: '', // 所选商品的总价格
-            cartTotalQuantity: '', // 所选商品的总数量
+            cartTotalPrice: 0, // 所选商品的总价格
+            cartTotalQuantity: 0, // 所选商品的总数量
             selectedAddress:'', //选择的地址
             addressNo:'',  // 所选地址的index
             showModal:false, // 显示弹窗
@@ -168,19 +168,16 @@ export default {
         getAddress(){
             this.axios.get('/shippings').then((res)=>{
                 this.addressList = res.list
-                console.log(res)
             })
         },
         getProduct(){
             this.axios.get('/carts').then((res)=>{
-                console.log(res)
                 let product = res.cartProductVoList
                 this.cartTotalPrice = res.cartTotalPrice
-                this.cartTotalQuantity = res.cartTotalQuantity
                 for(let i =0 ;i < product.length ; i++){
                     if(product[i].productSelected) {
                         this.productList.push(product[i])
-                        this.cartTotalQuantity = product[i].quantity
+                        this.cartTotalQuantity +=  product[i].quantity
                     }
                 }
             })
@@ -191,7 +188,34 @@ export default {
         },
         // 结算
         submit(){
-
+            let id = this.selectedAddress.id
+            if(!id){
+                this.$message({
+                    showClose:true,
+                    message:'请选择地址',
+                    type:'error',
+                    duration:1500
+                })
+            }else {
+                this.axios.post('/orders',{
+                    shippingId : id
+                }).then((res)=>{
+                    this.$router.push({
+                        path:'/order/pay',
+                        query:{
+                            orderNo:res.orderNo
+                        }
+                    })
+                    this.clear()
+                    this.selectedAddress = ''
+                    this.productList = []
+                    this.cartTotalPrice = 0
+                    this.cartTotalQuantity = 0
+                    this.addressNo = ''
+                    console.log(this.$route.path)
+                    
+                })
+            }
         },
         // 增加地址
         commitAddress(command){
@@ -252,6 +276,12 @@ export default {
                         this.getAddress()
                         // 将地址信息清空
                         this.clear()
+                        this.$message({
+                            showClose:true,
+                            message:'新增地址成功',
+                            type:'success',
+                            duration:1500
+                        })
                     })
                 }else if(command == 'change'){
                     this.axios.put(`/shippings/${this.id}`,{
@@ -268,6 +298,12 @@ export default {
                         this.command = ''
                         // 将地址信息清空
                         this.clear()
+                        this.$message({
+                            showClose:true,
+                            message:'修改地址成功',
+                            type:'success',
+                            duration:1500
+                        })
                     })
                 }
                 
@@ -305,6 +341,13 @@ export default {
                 }
             }).then(()=>{
                 this.getAddress()
+                this.selectedAddress = ''
+            })
+            this.$message({
+                showClose:true,
+                message:'删除成功',
+                type:'success',
+                duration:1500
             })
         },
         // 将所有地址信息置为空

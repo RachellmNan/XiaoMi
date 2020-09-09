@@ -171,7 +171,7 @@
                 </a>
             </div>
             <goods-box :lists="PhoneGoods"  modal="1" :singalPoster="singalPoster" title="手机" @modalstatus="modalstatus"></goods-box>
-            <modal btnType=1 title="提示" :showModal="showmodal" @modalstatus="modalstatus">
+            <modal btnType=1 title="提示" :showModal="showmodal" @modalstatus="modalstatus" @iconClose="iconClose">
                 <template v-slot:body-content>
                     <p>商品添加成功</p>
                 </template>
@@ -295,6 +295,10 @@ export default {
         modalstatus(status){
             this.showmodal = false
             if(status) this.showmodal = true 
+        },
+        iconClose(status){
+            this.showmodal = false
+            if(status) this.showmodal = true 
         }
     },
     computed:{
@@ -329,17 +333,6 @@ export default {
             this.SecGroup    = res["SecKillGoods"]
         })
         this.axios.defaults.baseURL = '/api'
-        // this.axios.defaults.baseURL = 'api'
-        // this.axios.get('/products',{
-        //     params:{
-        //         categoryId:100012,
-        //         pageSize:14
-        //     }
-        // }).then((res)=>{
-        //     res.list = res.list.slice(6,14)
-        //     // this.PhoneGoods = res.list
-        //     console.log(res)
-        // })
     }
 }
 </script>

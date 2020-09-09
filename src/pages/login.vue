@@ -60,7 +60,6 @@ export default {
             }).then((res)=>{
                 this.userId = res.id
                 this.$cookie.set('userId',res.id,{expires:'1D'})
-                console.log('登录成功',res)
                 this.$router.push('/index')
             })
         },
@@ -69,9 +68,13 @@ export default {
                 username:this.username,
                 password:this.password,
                 email:`${this.username}@qq.com`
-            }).then((res)=>{
-                alert('注册成功')
-                console.log('注册成功',res)
+            }).then(()=>{
+                this.$message({
+                    showClose:true,
+                    message: '注册成功',
+                    type:'success',
+                    duration:1500
+                })
             })
         }
     }

@@ -39,6 +39,7 @@ axios.interceptors.response.use(function(response){
     if(hashpath!='#/index'){
       window.location.href = '/#/login'; 
     }  
+    Message.warning(res.msg);
     return Promise.reject(res);
   }else{
     // this.$message({

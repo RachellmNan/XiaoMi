@@ -41,12 +41,12 @@ export default {
     },
     data(){
         return {
-
+            
         }
     },
     methods:{
         closeModal(){
-            this.$emit('iconClose')
+            this.$emit('iconClose',false)
         },
         goCart(){
             this.$router.push('/cart')

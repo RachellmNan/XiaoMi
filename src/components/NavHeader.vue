@@ -192,21 +192,23 @@ export default {
                 }
             }).then((res)=>{
                 this.ProductList = res.list.slice(0,6)
-                console.log(this.ProductList,1)
             })
         },
         goCart(){
             this.$router.push('/cart')
         },
         logout(){
-            console.log(1)
-            this.axios.post('/user/logout').then((res)=>{
-                console.log(res)
-                this.$message.success('退出成功')
-                this.$cookie.set('userId','',{expires:'-1'})
-                this.$store.dispatch('saveUserName','')
-                this.$store.dispatch('saveCartCount',0)
-            })
+            try {
+                this.axios.post('/user/logout').then(()=>{
+                    this.$message.success('退出成功')
+                    this.$cookie.set('userId','',{expires:'-1'})
+                    this.$store.dispatch('saveUserName','')
+                    this.$store.dispatch('saveCartCount',0)
+                })
+            } catch (error) {
+                console.log(error)
+            }  
+            
         }
     },
     computed:{
