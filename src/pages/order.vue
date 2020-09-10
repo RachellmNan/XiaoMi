@@ -24,7 +24,7 @@ export default {
         return {
             title:'确认订单',
             desc:'',
-            path : ''
+            path : this.$route.path
         }
     },
     watch:{
@@ -32,14 +32,25 @@ export default {
             this.path = to.path
         },
         path(val){
-            if(val.indexOf('pay')>-1){
+            this.changeText(val)
+        }
+    },
+    methods:{
+        changeText(path){
+            if(path.indexOf('pay')>-1){
                 this.title = '支付订单'
                 this.desc  = '请谨防钓鱼链接或诈骗电话'
-            }else if(val.indexOf('confirm')>-1){
+            }else if(path.indexOf('confirm')>-1){
                 this.title = '确认订单'
                 this.desc  = ''
+            }else if(path.indexOf('list')>-1){
+                this.title = '订单列表'
+                this.desc  = '请谨防钓鱼链接或诈骗电话'
             }
         }
+    },
+    mounted(){
+        this.changeText(this.path)
     }
 }
 </script>

@@ -21,7 +21,7 @@
                     <a href="" v-if="username != ''" @click="logout">退出登录</a>
                     <a href="/#/login" class="user-wrapper" v-if="username == ''">登录<span class="iconfont">&#xe687;</span></a><span>|</span>
                     <a href="javascript:;">消息通知</a><span>|</span>
-                    <a href="javascript:;">我的订单</a><span class="iconfont">&#xe687;</span>
+                    <a href="javascript:;" @click="goOrderList">我的订单</a><span class="iconfont">&#xe687;</span>
                     <a href="javascript:;" class="cart" @click="goCart"><span class="cart-icon iconfont" >&#xe610;</span>购物车（{{cartCount}}）</a>
                 </div>
             </div>
@@ -208,7 +208,9 @@ export default {
             } catch (error) {
                 console.log(error)
             }  
-            
+        },
+        goOrderList(){
+            this.$router.push('/order/list')
         }
     },
     computed:{

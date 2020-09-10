@@ -1,6 +1,6 @@
 <template>
     <div class="confirm">
-        <modal :showModal="showModal" btnType=2 title="添加收货地址" @cancel-commit="cancelCommit" @commit-address="commitAddress" @modalstatus="showModal = false" @iconClose="iconClose">
+        <modal sureText='确定' cancelText='取消' :showModal="showModal" btnType=2 title="添加收货地址" @cancel-commit="cancelCommit" @commit-address="commitAddress" @modalstatus="showModal = false" @iconClose="iconClose">
             <template v-slot:body-content>
                 <div class="edit-wrapper">
                     <div class="user-group">

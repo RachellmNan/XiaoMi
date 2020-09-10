@@ -16,8 +16,8 @@
                 <div class="footer">
                     <span class="tip" v-if="btnType == 1" @click="goCart">查看购物车</span>
                     <div class="but-group" v-if="btnType == 2">
-                        <span class="submit" @click="$emit('commit-address','commit')">确定</span>
-                        <span class="cancel" @click="$emit('cancel-commit',false)">取消</span>
+                        <span class="submit" @click="$emit('commit-address','commit')">{{sureText}}</span>
+                        <span class="cancel" @click="$emit('cancel-commit',false)">{{cancelText}}</span>
                     </div>
                 </div>
             </div>
@@ -37,11 +37,16 @@ export default {
             type:String,
             defalut:''
         },
-        showModal:Boolean
+        showModal:Boolean,
+        sureText:{
+            type:String
+        },
+        cancelText:{
+            type:String
+        }
     },
     data(){
         return {
-            
         }
     },
     methods:{

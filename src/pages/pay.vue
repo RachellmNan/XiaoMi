@@ -1,5 +1,11 @@
 <template>
     <div class="pay">
+        <scan-pay-code @close-modal="closeWePay" v-if="showWePay" ></scan-pay-code>
+        <modal sureText="查看订单" cancelText="未支付" title="支付确认" btnType=2 :showModal="showModal" @commit-address="goOrderList" @cancel-commit="cancelPay" @iconClose="closeModal">
+            <template v-slot:body-content>
+                <p>您确认是否完成支付</p>
+            </template>
+        </modal>
         <div class="container">
             <div class="order-detail-wrapper">
                 <div class="top"  :class="{select:select}">
@@ -20,7 +26,7 @@
                         </p>
                     </div>
                     <div class="detail-wrapper ">
-                        <p>应付总额：<span class="price">1915</span><span class="color">元</span></p>
+                        <p>应付总额：<span class="price">{{payment}}</span><span class="color">元</span></p>
                         <p class="showdetail" @click="select = !select">订单详情<span class="iconfont">&#xe687;</span></p>
                     </div>
                     <div class="hide-wrapper">
@@ -65,7 +71,7 @@
                         <p>支付平台</p>
                     </div>
                     <div class="payment-list">
-                        <div class="payment-item">
+                        <div class="payment-item" @click="WePay">
                             <img src="/imgs/pay/wechat.jpg" alt="">
                         </div>
                     </div>
@@ -77,14 +83,25 @@
 </template>
 
 <script>
+import ScanPayCode from '../components/ScanPayCode'
+import QRCode from 'qrcode'
+import Modal from '../components/Modal'
 export default {
     name:'pay',
+    components:{
+        ScanPayCode,
+        Modal
+    },
     data(){
         return {
             select:false,
             addressList : [],
             productList:  [],
-            orderNo : this.$route.query.orderNo
+            payment:0,
+            orderNo : this.$route.query.orderNo,
+            showWePay : false, // 显示支付二维码
+            showModal: false,  // 显示弹窗  
+            WeChatImg : ''
         }
     },
     methods:{
@@ -96,7 +113,42 @@ export default {
             }).then((res)=>{
                 this.addressList = res.shippingVo
                 this.productList = res.orderItemVoList
+                this.payment = res.payment
             })
+        },
+        WePay(){
+            this.axios.post('/pay',{
+                orderId:this.orderNo,
+                orderName:'小米', //扫码支付时订单名称
+                amount:0.01, //单位元
+                payType:2 //1支付宝，2微信
+            }).then((res)=>{
+                QRCode.toDataURL(res.content)
+                .then(url => {
+                    this.WeChatImg = url
+                    this.showWePay = true
+                })
+                .catch(err => {
+                    console.error(err)
+                })
+            })
+        },
+        closeWePay(){
+            this.showWePay = false
+            this.showModal = true
+        },
+        // 前往订单列表
+        goOrderList(){
+            this.showModal = false
+            this.$router.push('/order/list')
+        },
+        // cancelPay
+        cancelPay(){
+            this.showModal = false
+        },
+        // 关闭弹窗
+        closeModal(params){
+            if(!params) this.showModal = false
         }
     },
     mounted(){

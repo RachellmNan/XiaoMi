@@ -9,6 +9,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import store from './store/index'
 
 import {Message} from 'element-ui'
+import "./assets/scss/element-variables.scss";
 // import 'element-ui/lib/theme-chalk/index.css';
 
 import 'swiper/css/swiper.css'
@@ -51,6 +52,12 @@ axios.interceptors.response.use(function(response){
     Message.warning(res.msg);
     return Promise.reject(res);
   }
+},(error)=>{
+  // 拦截 http异常
+  console.log(error)
+  Message.error(error);
+  // 抛出异常，不会再次进入到then 中
+  return Promise.reject(error);
 });
 
 
