@@ -25,7 +25,7 @@
             <div class="right">
                 <ul class="goods-list" id="SecKill" >
                     <li class="goods-item" v-for="item of lists" :key="item.id" :class="{ first : item.id % 5 == 0 , second : item.id % 5 == 1 , third : item.id % 5 == 2 , forth : item.id % 5 == 3 , fifth : item.id % 5 == 4}">
-                        <a href="">
+                        <a href="javascript:;">
                             <div class="content">
                                 <div class="img-wrapper">
                                     <img :src=item.img alt="">

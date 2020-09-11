@@ -10,6 +10,7 @@ import Order from './pages/order.vue'
 import Confirm from './pages/confirm.vue'
 import Pay from './pages/pay.vue'
 import OrderList from './pages/orderList.vue'
+import Register from './pages/register.vue'
 
 Vue.use(Router)
 
@@ -36,6 +37,10 @@ export default new Router({
         path:'/login',
         name:'login',
         component:Login
+    },{
+        path:'/register',
+        name:'register',
+        component:Register
     },{
         path:'/cart',
         name:'cart',

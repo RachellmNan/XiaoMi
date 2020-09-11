@@ -3,7 +3,9 @@
         <div class="container">
             <div class="header">
                 <div class="img-wrapper">
-                    <img src="/imgs/login/logo.png" alt="">
+                    <a href="/#/index">
+                        <img src="/imgs/login/logo.png" alt="">
+                    </a>
                 </div>
             </div>
             <div class="body">
@@ -18,9 +20,8 @@
                             <input type="text" placeholder="账号:summer or 使用注册功能" v-model="username">
                             <input type="password" placeholder="密码:summer" v-model="password">
                             <p class="submit" @click="login">登录</p>
-                            <p class="extra" @click="register">手机短信登录/注册</p>
                             <div class="other-group">
-                                <span>立即注册</span>
+                                <span @click="goRegister" class="registers">立即注册</span>
                                 <span>|</span>
                                 <span>忘记密码？</span>
                             </div>
@@ -60,21 +61,20 @@ export default {
             }).then((res)=>{
                 this.userId = res.id
                 this.$cookie.set('userId',res.id,{expires:'1D'})
+                this.$store.dispatch('saveUserName',this.username)
+                this.getCartCount()
                 this.$router.push('/index')
             })
         },
-        register(){
-            this.axios.post('/user/register',{
-                username:this.username,
-                password:this.password,
-                email:`${this.username}@qq.com`
-            }).then(()=>{
-                this.$message({
-                    showClose:true,
-                    message: '注册成功',
-                    type:'success',
-                    duration:1500
-                })
+        goRegister(){
+            window.open('/#/register',"_blank")
+        },
+        getCartCount(){
+            this.axios({
+                method:'get',
+                url:'/carts/products/sum'
+            }).then((res=0)=>{
+                this.$store.dispatch('saveCartCount',res)
             })
         }
     }
@@ -154,7 +154,6 @@ export default {
                         color: #ff6700;
                         font-size: 15px;
                         margin: 0px auto 30px;
-                        cursor: pointer;
                     }
                     .other-group{
                         width: 348px;
@@ -167,6 +166,12 @@ export default {
                             vertical-align: middle;
                             color: #999;
                             margin: 0px 5px;
+                        }
+                        .registers{
+                            cursor: pointer;
+                            &:hover{
+                                color: #ff6700;
+                            }
                         }
                     }
                     .login-list{

@@ -43,19 +43,12 @@ axios.interceptors.response.use(function(response){
     Message.warning(res.msg);
     return Promise.reject(res);
   }else{
-    // this.$message({
-    //   showClose:true,
-    //   type:'warning',
-    //   message:`${res.msg}` 
-    // })
-    // alert(res.msg)
     Message.warning(res.msg);
     return Promise.reject(res);
   }
 },(error)=>{
   // 拦截 http异常
-  console.log(error)
-  Message.error(error);
+  // Message.error(error);
   // 抛出异常，不会再次进入到then 中
   return Promise.reject(error);
 });

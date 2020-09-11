@@ -30,7 +30,7 @@
             <div class="good-wrapper">
                 <ul class="goods-list" v-for="list in GoodsList" :key="list.uid" v-show="list.uid == hoverId">
                     <li class="goods-item" v-for="item of list.data" :key="item.id">
-                        <a class="singal" href="javascript:;" v-show=" modal != 2 || item.id != 7">
+                        <a class="singal" id="to" href="javascript:;" v-show=" modal != 2 || item.id != 7" @click="gobyRouter(item.id)">
                             <div class="goodsImg-wrapper">
                                 <img v-lazy="item.img">
                             </div>
@@ -39,7 +39,7 @@
                             <p class="price-wrapper">
                                 <span class="newPrice">{{item.DisPrice}}元</span>
                                 <span class="oldPrice" v-show="item.OldPrice">{{item.OldPrice}}元</span>
-                                <span :class="{carticon:modal == 1}" @click="addCart(item.id)"></span>
+                                <span :class="{carticon:modal == 1}" @click="addCart(item.id);return false;"></span>
                             </p>
                         </a>
                         <a class="complex" href="javascript:;" v-if="modal == 2 && item.id == 7">
@@ -111,7 +111,10 @@ export default {
         },
         // 将物品添加购物车，向父组件发送事件显示弹窗
         addCart(id){
-            this.axios.defaults.baseURL = '/api'
+            this.stopPropagation()
+            // let a = document.getElementById("to")
+            // a.href='/#/index'
+            // console.dir(a)
             this.axios({
                 method:'post',
                 url:'/carts',
@@ -125,7 +128,22 @@ export default {
             }).catch(()=>{
                 this.$emit('modalstatus',true)
             })
+            event.cancelBubble=true;
+        },
+        stopPropagation(e) {  
+            e = e || window.event;  
+            if(e.stopPropagation) { //W3C阻止冒泡方法  
+                e.stopPropagation();  
+            } else {  
+                e.cancelBubble = true; //IE阻止冒泡方法  
+            }  
+        },
+        gobyRouter(id){
+            this.$router.push('/product/'+id)
         }
+    },
+    mounted(){
+        window.scrollTo(0,0);
     }
 }
 </script>

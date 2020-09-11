@@ -39,7 +39,7 @@
                     <span class="iconfont">&#xe610;</span>
                 </a>
                 <div class="extend cart">
-                    <span >购物车(0)</span>
+                    <span >购物车({{count}})</span>
                 </div>
             </li>
         </ul>
@@ -62,6 +62,11 @@ export default {
     data(){
         return {
             ShowButton: false
+        }
+    },
+    computed:{
+        count(){
+            return this.$store.state.cartCount
         }
     },
     methods:{

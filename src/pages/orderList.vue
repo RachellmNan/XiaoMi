@@ -44,6 +44,9 @@
                 :total="pageTotal"
                 @current-change="handleCurrent">
             </el-pagination>
+            <!-- <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="0" class="inif-scroll">
+                <img src="/imgs/loading-svg/loading-spinning-bubbles.svg" alt="" v-show="pageLoad">
+            </div> -->
         </div>
     </div>
 </template>
@@ -52,6 +55,7 @@
 import Load from '../components/loading'
 import NoData from '../components/NoData'
 import {Pagination} from 'element-ui'
+import infiniteScroll from 'vue-infinite-scroll'
 export default {
     name:'OrderList',
     components:{
@@ -59,23 +63,27 @@ export default {
         NoData,
         [Pagination.name] : Pagination
     },
+    directives: {infiniteScroll},
     data(){
         return {
             orderList:[],
             showLoad : true,
             pageSize : 10,
             pageNumber : 1,
-            pageTotal: 0
+            pageTotal: 0,
+            busy:false, // 滚动加载是否触发
+            pageLoad:false // 是否显示加载动画
         }
     },
     methods:{
         getOrderList(){
+            this.busy = true
             this.axios.get('/orders',{
                 params:{
                     pageNum:this.pageNumber
                 }
             }).then((res)=>{
-                console.log(res)
+                this.busy = false
                 this.orderList = res.list
                 this.showLoad = false
                 this.pageTotal = res.total
@@ -86,8 +94,33 @@ export default {
         handleCurrent(pageNum){
             this.pageNumber = pageNum
             this.getOrderList()
-        }
+        },
+        // 为滚动加载
+        // getList(){
+        //     this.pageLoad = true
+        //     this.axios.get('/orders',{
+        //         params:{
+        //             pageNum:this.pageNumber
+        //         }
+        //     }).then((res)=>{
+        //         this.orderList = this.orderList.concat(res.list)
+        //         this.pageLoad = false
+        //         if(res.hasNextPage){
+        //             this.busy = false
+        //         }else {
+        //             this.busy = true
+        //         }
+        //     })
+        // },
+        // loadMore(){
+        //     this.busy = true
+        //     setTimeout(()=>{
+        //         this.pageNumber ++ 
+        //         this.getList()
+        //     },1500)
+        // },
     },
+
     mounted(){
         this.getOrderList()
     }
@@ -187,6 +220,9 @@ export default {
         // .el-pagination.is-background .el-pager li:not(.disabled).active{
         //     background-color: #ff6700;
         // }
+        .inif-scroll{
+            text-align: center;
+        }
     }
 }
     

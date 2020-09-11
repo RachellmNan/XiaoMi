@@ -16,7 +16,7 @@
                 <div class="user-wrapper">
                     <span >{{user}}<em class="iconfont">&#xe687;</em></span>
                 </div>
-                <p class="other">我的订单</p>
+                <p class="other" @click="goOrder">我的订单</p>
             </div>
         </div>
     </div>
@@ -25,6 +25,11 @@
 <script>
 export default {
     name:'OrderHeader',
+    methods:{
+        goOrder(){
+            if(this.$route.hashpath != '#/order/list') this.$router.push('/order/list')
+        }
+    },
     computed:{
         user(){
             return this.$store.state.username
@@ -112,6 +117,7 @@ export default {
                 .other{
                     display: inline-block;
                     margin-left: 17px;
+                    cursor: pointer;
                     &:hover{
                         color: #ff6700;
                     }
