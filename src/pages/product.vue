@@ -43,7 +43,7 @@
                         
                             <div class="mask" :class="{'mask-animation':showVideo}"></div>
                             <div class="video-group" :class="{'slide':showVideo}">
-                                <span class="iconfont" @click="showVideo = false" >&#xe609;</span>
+                                <span id='closeIcon' class="iconfont" @click="coloseVideo" >&#xe609;</span>
                                 <video  src="/imgs/product/video.mp4"  controls="controls" ></video>
                             </div>
                             
@@ -92,6 +92,15 @@ export default {
             }).then((res)=>{
                 this.productList = res
             })
+        },
+        coloseVideo(){
+            this.showVideo = false
+            let vid = document.getElementsByTagName('video')[0]
+            let currentSrc = vid.currentSrc
+            setTimeout(()=>{
+                vid.src = ''
+                vid.src = currentSrc
+            },500)
         }
     },
     beforeMount(){
@@ -224,13 +233,6 @@ export default {
                         transition: top .5s,opacity .5s;
                     }
                 }
-                
-                // .fade-enter-active,.fade-leave-active{
-                //     transition: top .3s;
-                // }
-                // .fade-enter,.fade-leave-to{
-                //     top:-100%
-                // }
             }
         }
     }
