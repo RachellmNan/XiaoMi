@@ -48,6 +48,7 @@ export default {
     },
     mounted(){
         window.addEventListener('scroll',this.getHeight)
+        console.dir(this)
     },
     destroyed(){
         window.removeEventListener('scroll',this.getHeight,false)

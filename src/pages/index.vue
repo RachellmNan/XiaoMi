@@ -333,6 +333,7 @@ export default {
             this.SecGroup    = res["SecKillGoods"]
         })
         this.axios.defaults.baseURL = '/api'
+        console.dir(this)
     }
 }
 </script>

@@ -12,7 +12,27 @@
                         </div>
                     </div>
                     <div class="pro-city">
-                        <select name="province" id="province" v-model="receiverProvince">
+                        <select name="province" id="province" v-model="receiverProvince" @change="changeProvince(receiverProvince)">
+                            <option disabled="disabled" selected>--省份--</option>
+                            <option v-for="(item,index) of selectPro" :value="item" :key="index">{{item}}</option>
+                        </select>
+                        <select name="city" id="city" v-model="receiverCity" @change="changeCity(receiverCity)">
+                            <option disabled="disabled" selected>--城市--</option>
+                            <option v-for="(item,index) of selectCity" :value="item" :key="index">{{item}}</option>
+                        </select>
+                        <select name="area" id="area" v-model="receiverDistrict">
+                            <option disabled="disabled" selected>--区域--</option>
+                            <option v-for="(item,index) of selectArea" :value="item" :key="index">{{item}}</option>
+                        </select>
+                        <!-- <select name="city" id="city" v-model="receiverProvince">
+                            <option disabled="disabled" selected>--城市--</option>
+                            <option v-for="(item,index) of selectPro" :value="item" :key="index">{{item}}</option>
+                        </select>
+                        <select name="area" id="area" v-model="receiverProvince">
+                            <option selected>--区域--</option>
+                            <option v-for="(item,index) of selectPro" :value="item" :key="index">{{item}}</option>
+                        </select> -->
+                        <!-- <select name="province" id="province" v-model="receiverProvince">
                             <option value="湖南省" selected>湖南省</option>
                             <option value="广东省" >广东省</option>
                             <option value="浙江省" >浙江省</option>
@@ -22,11 +42,11 @@
                             <option value="广州市" >广州市</option>
                             <option value="杭州市" >杭州市</option>
                         </select>
-                        <select name="area" id="area" v-model="receiverDistrict">
+                        <select name="area" id="areça" v-model="receiverDistrict">
                             <option value="开福区" selected>开福区</option>
                             <option value="白云区" >白云区</option>
                             <option value="滨江区" >滨江区</option>
-                        </select>
+                        </select> -->
                     </div>
                     <div class="textarea" >
                         <textarea name="text" id="textarea" cols="30" rows="10" placeholder="详细地址" v-model="receiverAddress"></textarea>
@@ -139,6 +159,7 @@
 
 <script>
 import Modal from '../components/Modal'
+import {changeProvince , changeCity} from '../Util/address.js'
 export default {
     name:'confirm',
     components:{
@@ -158,6 +179,9 @@ export default {
             receiverProvince:'',
             receiverCity:'',
             receiverDistrict:'',
+            selectPro:["湖南省","广东省","浙江省"],
+            selectCity:[],
+            selectArea:[],
             receiverAddress:'',
             receiverZip:'',
             command:'',
@@ -363,7 +387,9 @@ export default {
         },
         iconClose(){
             this.clear()
-        }
+        },
+        changeProvince,
+        changeCity
     },
     mounted(){
         this.getAddress()
