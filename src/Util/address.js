@@ -12,6 +12,7 @@
 
 
 export function changeProvince(item) {
+    console.log(item);
     if(item == "湖南省"){
         this.selectCity = ["长沙市","岳阳市","湘潭市"]
     }else if(item == "广东省"){
