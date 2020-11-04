@@ -136,7 +136,7 @@
 
 <script>
 import Modal from '../components/Modal'
-import {changeProvince , changeCity} from '../Util/address.js'
+import {changeProvince , changeCity} from '../Util/address.ts'
 export default {
     name:'confirm',
     components:{

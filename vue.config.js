@@ -21,5 +21,13 @@ module.exports = {
     productionSourceMap:false,
     chainWebpack:(config)=>{
         config.plugins.delete('prefetch');
+    },
+    configureWebpack: {
+        resolve: {extensions: [".ts", ".tsx", ".js", ".json"]},
+        module: {
+            rules: [
+                { test: /\.ts$/, loader: "ts-loader" },
+            ]
+        }
     }
 }
