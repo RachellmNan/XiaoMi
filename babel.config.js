@@ -9,6 +9,10 @@ module.exports = {
         "libraryName": "element-ui",
         "styleLibraryName": "theme-chalk"
       }
+    ],
+    [
+      "import",
+      { libraryName: "ant-design-vue", libraryDirectory: "es", "style": "css" }
     ]
   ]
 }

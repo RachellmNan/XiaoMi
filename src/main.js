@@ -12,6 +12,8 @@ import {Message} from 'element-ui'
 import "./assets/scss/element-variables.scss";
 // import 'element-ui/lib/theme-chalk/index.css';
 
+// import { Button } from 'ant-design-vue';
+
 import 'swiper/css/swiper.css'
 import './assets/iconfont.css';
 
@@ -22,6 +24,9 @@ Vue.use(VueLazyload,{
 })
 Vue.use(VueCookie)
 Vue.use(Message)
+
+// Vue.component(Button.name, Button)
+
 Vue.prototype.$message = Message
 
 Vue.config.productionTip = false

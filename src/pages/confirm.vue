@@ -12,6 +12,9 @@
                         </div>
                     </div>
                     <div class="pro-city">
+                        <!-- <a-button type="primary">
+                            Primary
+                        </a-button> -->
                         <select name="province" id="province" v-model="receiverProvince" @change="changeProvince(receiverProvince)">
                             <option value='' disabled="true">--请选择省份--</option>
                             <option v-for="(item,index) of selectPro" :value="item" :key="index">{{item}}</option>
@@ -137,10 +140,14 @@
 <script>
 import Modal from '../components/Modal'
 import {changeProvince , changeCity} from '../Util/address.ts'
+// import { Button } from 'ant-design-vue';
+// import Vue from 'vue'
+
 export default {
     name:'confirm',
     components:{
-        Modal
+        Modal,
+        // [Button.name] : Button
     },
     data(){
         return {
@@ -334,6 +341,33 @@ export default {
             this.showModal = true
             this.command = 'change'
             this.id = item.id
+            if(this.receiverProvince =='湖南省'){
+                this.selectCity = ["长沙市","岳阳市","湘潭市"]
+            }else if(this.receiverProvince =='广东省'){
+                this.selectCity = ["广州市","深圳市","佛山市"]
+            }else if(this.receiverProvince =='浙江省'){
+                this.selectCity = ["杭州市","宁波市","温州市"]
+            }
+            
+            if(this.receiverCity == "长沙市"){
+                this.selectArea = ["开福区","芙蓉区","天心区"]
+            }else if(this.receiverCity == "岳阳市"){
+                this.selectArea = ["岳阳楼区","君山区","云溪区"]
+            }else if(this.receiverCity == "湘潭市"){
+                this.selectArea = ["雨湖区","岳塘区","韶山市"]
+            }else if(this.receiverCity == "广州市"){
+                this.selectArea = ["白云区","天河区","黄浦区"]
+            }else if(this.receiverCity == "深圳市"){
+                this.selectArea = ["宝安区","南山区","福田区"]
+            }else if(this.receiverCity == "佛山市"){
+                this.selectArea = ["三水区","南海区","高明区"]
+            }else if(this.receiverCity == "杭州市"){
+                this.selectArea = ["西湖区","滨江区","富阳区"]
+            }else if(this.receiverCity == "宁波市"){
+                this.selectArea = ["奉化区","江北区","北仑区"]
+            }else if(this.receiverCity == "温州市"){
+                this.selectArea = ["洞头区","龙湾区","鹿城区"]
+            }
         },
         delAddress(shippingId){
             this.axios.delete(`/shippings/${shippingId}`,{
