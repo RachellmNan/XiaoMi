@@ -10,9 +10,15 @@ import store from './store/index'
 
 import {Message} from 'element-ui'
 import "./assets/scss/element-variables.scss";
+
+
+// import { Select } from 'ant-design-vue';
+// import Vue from 'vue'
+// Vue.component(Select.name, Select)
+// Vue.component(Select.Option.name, Select.Option)
 // import 'element-ui/lib/theme-chalk/index.css';
 
-// import { Button } from 'ant-design-vue';
+// import { Select } from 'ant-design-vue';
 
 import 'swiper/css/swiper.css'
 import './assets/iconfont.css';
@@ -25,7 +31,9 @@ Vue.use(VueLazyload,{
 Vue.use(VueCookie)
 Vue.use(Message)
 
-// Vue.component(Button.name, Button)
+// Vue.component(Select.name, Select)
+// Vue.component(Select.Option.name, Select.Option)
+
 
 Vue.prototype.$message = Message
 

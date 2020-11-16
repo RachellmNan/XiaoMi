@@ -1,21 +1,66 @@
 <template>
     <div class="confirm">
-        <modal sureText='确定' cancelText='取消' :showModal="showModal" btnType=2 title="添加收货地址" @cancel-commit="cancelCommit" @commit-address="commitAddress" @modalstatus="showModal = false" @iconClose="iconClose">
+        <modal
+            sureText="确定"
+            cancelText="取消"
+            :showModal="showModal"
+            btnType="2"
+            title="添加收货地址"
+            @cancel-commit="cancelCommit"
+            @commit-address="commitAddress"
+            @modalstatus="showModal = false"
+            @iconClose="iconClose"
+        >
             <template v-slot:body-content>
                 <div class="edit-wrapper">
                     <div class="user-group">
                         <div class="wrapper">
-                            <input type="text" placeholder="姓名" v-model="receiverName">
+                            <input
+                                type="text"
+                                placeholder="姓名"
+                                v-model="receiverName"
+                            />
                         </div>
                         <div class="wrapper">
-                            <input type="text" placeholder="手机号" v-model="receiverMobile">
+                            <input
+                                type="text"
+                                placeholder="手机号"
+                                v-model="receiverMobile"
+                            />
                         </div>
                     </div>
                     <div class="pro-city">
-                        <!-- <a-button type="primary">
-                            Primary
-                        </a-button> -->
-                        <select name="province" id="province" v-model="receiverProvince" @change="changeProvince(receiverProvince)">
+                        <!-- 用ant design开发-->
+                        <a-select v-model="receiverProvince" @change="changeProvince" style="width: 140px">
+                            <a-select-option value="" disabled>--请选择省份--</a-select-option>
+                            <a-select-option 
+                                v-for="(item, index) of selectPro" 
+                                :value="item" 
+                                :key="index">
+                                {{ item }}
+                            </a-select-option>
+                        </a-select>
+                        <a-select v-model="receiverCity" @change="changeCity" style="width: 140px;margin-left:20px;">
+                            <a-select-option value="" disabled>--请选择城市--</a-select-option>
+                            <a-select-option 
+                                v-for="(item, index) of selectCity" 
+                                :value="item" 
+                                :key="index">
+                                {{ item }}
+                            </a-select-option>
+                        </a-select>
+                        <a-select v-model="receiverDistrict" style="width: 130px;margin-left:20px;">
+                            <a-select-option value="" disabled>--请选择区域--</a-select-option>
+                            <a-select-option 
+                                v-for="(item, index) of selectArea" 
+                                :value="item" 
+                                :key="index">
+                                {{ item }}
+                            </a-select-option>
+                        </a-select>
+
+                        <!-- 使用ts开发的省市区切换-->
+                        <!-- <select name="province" id="province" v-model="receiverProvince" @change="changeProvince(receiverProvince)">
                             <option value='' disabled="true">--请选择省份--</option>
                             <option v-for="(item,index) of selectPro" :value="item" :key="index">{{item}}</option>
                         </select>
@@ -26,39 +71,63 @@
                         <select name="area" id="area" v-model="receiverDistrict">
                             <option value='' disabled="true">--请选择区域--</option>
                             <option v-for="(item,index) of selectArea" :value="item" :key="index">{{item}}</option>
-                        </select>
+                        </select> -->
                     </div>
-                    <div class="textarea" >
-                        <textarea name="text" id="textarea" cols="30" rows="10" placeholder="详细地址" v-model="receiverAddress"></textarea>
+                    <div class="textarea">
+                        <textarea
+                            name="text"
+                            id="textarea"
+                            cols="30"
+                            rows="10"
+                            placeholder="详细地址"
+                            v-model="receiverAddress"
+                        ></textarea>
                     </div>
                     <div class="postcode">
-                        <input type="text" placeholder="邮编" v-model="receiverZip">
+                        <input
+                            type="text"
+                            placeholder="邮编"
+                            v-model="receiverZip"
+                        />
                     </div>
                 </div>
-                
             </template>
         </modal>
         <div class="container">
             <div class="address-wrapper">
                 <p class="title">收货地址</p>
                 <div class="address-container-list">
-                    <div class="addres-wrapper-item" :class="{ checked:addressNo == item.id}" v-for="item of addressList" :key="item.id" @click="choseAddress(item)">
+                    <div
+                        class="addres-wrapper-item"
+                        :class="{ checked: addressNo == item.id }"
+                        v-for="item of addressList"
+                        :key="item.id"
+                        @click="choseAddress(item)"
+                    >
                         <div class="address-top">
-                            <p class="name">{{item.receiverName}}</p>
-                            <p class="phone">{{item.receiverMobile}}</p>
+                            <p class="name">{{ item.receiverName }}</p>
+                            <p class="phone">{{ item.receiverMobile }}</p>
                             <div class="address-detail">
-                                <span>{{item.receiverProvince}}</span>
-                                <span>{{item.receiverCity}}</span>
-                                <span>{{item.receiverDistrict}}</span>
-                                <span>{{item.receiverAddress}}</span>
+                                <span>{{ item.receiverProvince }}</span>
+                                <span>{{ item.receiverCity }}</span>
+                                <span>{{ item.receiverDistrict }}</span>
+                                <span>{{ item.receiverAddress }}</span>
                             </div>
                         </div>
                         <div class="option-wrapper">
-                            <span class="change iconfont" @click="changeAddress(item)">&#xe7cd;</span>
-                            <span class="del iconfont" @click="delAddress(item.id)">&#xe744;</span>
+                            <span
+                                class="change iconfont"
+                                @click="changeAddress(item)"
+                                >&#xe7cd;</span
+                            >
+                            <span
+                                class="del iconfont"
+                                @click="delAddress(item.id)"
+                                >&#xe744;</span
+                            >
                         </div>
                     </div>
-                    <div class="add-address-wrapper" @click="showModal=true">
+                    <div class="add-address-wrapper" @click="showModal = true">
                         <p class="icon-wrapper">
                             <span class="iconfont">&#xe664;</span>
                         </p>
@@ -69,20 +138,25 @@
             <div class="goods-wrapper">
                 <p class="title">商品及优惠券</p>
                 <div class="goods-list">
-                    <div class="goods-item" v-for="item of productList" :key="item.id">
+                    <div
+                        class="goods-item"
+                        v-for="item of productList"
+                        :key="item.id"
+                    >
                         <div class="img-wrapper box">
-                            <img :src="item.productMainImage" alt="">
+                            <img :src="item.productMainImage" alt="" />
                         </div>
                         <div class="desc-wrapper box">
-                            <p class="desc">{{item.productName}}</p>
+                            <p class="desc">{{ item.productName }}</p>
                         </div>
                         <div class="price-wrapper box">
                             <p>
-                                <span>{{item.productPrice}}</span>元 x <span>{{item.quantity}}</span>
+                                <span>{{ item.productPrice }}</span
+                                >元 x <span>{{ item.quantity }}</span>
                             </p>
                         </div>
                         <div class="price-total-wrapper box">
-                            <p class="price">{{item.productTotalPrice}}元</p>
+                            <p class="price">{{ item.productTotalPrice }}元</p>
                         </div>
                     </div>
                 </div>
@@ -93,17 +167,17 @@
             </div>
             <div class="sendways-wrapper">
                 <p class="title">发票</p>
-                <p class="detail">电子普通发票 </p>
+                <p class="detail">电子普通发票</p>
             </div>
             <div class="order-detaip-wrapper">
                 <div class="detail-container">
                     <div class="coun-wrapper size">
                         <p class="box left">商品件数:</p>
-                        <p class="box right">{{cartTotalQuantity}}件</p>
+                        <p class="box right">{{ cartTotalQuantity }}件</p>
                     </div>
                     <div class="total-wrapper size">
                         <p class="box left">商品总价:</p>
-                        <p class="box right">{{cartTotalPrice}}元</p>
+                        <p class="box right">{{ cartTotalPrice }}元</p>
                     </div>
                     <div class="activity-wrapper size">
                         <p class="box left">活动优惠:</p>
@@ -119,15 +193,21 @@
                     </div>
                     <div class="sum-wrapper size">
                         <p class="box left">应付总额:</p>
-                        <p class="box right">{{cartTotalPrice}}元</p>
+                        <p class="box right">{{ cartTotalPrice }}元</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="check-wrapper">
             <div class="left">
-                    <span>{{selectedAddress.receiverName}}</span> <span>{{selectedAddress.receiverMobile}}</span>
-                    <p><span>{{selectedAddress.receiverProvince}}</span> <span>{{selectedAddress.receiverCity}}</span> <span>{{selectedAddress.receiverDistrict}}</span> <span>{{selectedAddress.receiverAddress}}</span></p>
+                <span>{{ selectedAddress.receiverName }}</span>
+                <span>{{ selectedAddress.receiverMobile }}</span>
+                <p>
+                    <span>{{ selectedAddress.receiverProvince }}</span>
+                    <span>{{ selectedAddress.receiverCity }}</span>
+                    <span>{{ selectedAddress.receiverDistrict }}</span>
+                    <span>{{ selectedAddress.receiverAddress }}</span>
+                </p>
             </div>
             <div class="right">
                 <p class="back" @click="goback">返回购物车</p>
@@ -138,596 +218,622 @@
 </template>
 
 <script>
-import Modal from '../components/Modal'
-import {changeProvince , changeCity} from '../Util/address.ts'
-// import { Button } from 'ant-design-vue';
-// import Vue from 'vue'
+import Modal from "../components/Modal";
+import { changeProvince, changeCity } from "../Util/address.ts";
+import { Select } from 'ant-design-vue';
+import Vue from 'vue'
+Vue.component(Select.name, Select)
+Vue.component(Select.Option.name, Select.Option)
+// import 'ant-design-vue/lib/select/style/css';
+import 'ant-design-vue/dist/antd.css';
 
 export default {
-    name:'confirm',
-    components:{
+    name: "confirm",
+    components: {
         Modal,
         // [Button.name] : Button
     },
-    data(){
+    data() {
         return {
             addressList: [], // 地址列表
             productList: [], // 购物车中选择的商品
             cartTotalPrice: 0, // 所选商品的总价格
             cartTotalQuantity: 0, // 所选商品的总数量
-            selectedAddress:'', //选择的地址
-            addressNo:'',  // 所选地址的index
-            showModal:false, // 显示弹窗
-            receiverName:'', // 
-            receiverMobile:'',
-            receiverProvince:'',
-            receiverCity:'',
-            receiverDistrict:'',
-            selectPro:["湖南省","广东省","浙江省"],
-            selectCity:[],
-            selectArea:[],
-            receiverAddress:'',
-            receiverZip:'',
-            command:'',
-            id:''
-        }
+            selectedAddress: "", //选择的地址
+            addressNo: "", // 所选地址的index
+            showModal: false, // 显示弹窗
+            receiverName: "", //
+            receiverMobile: "",
+            receiverProvince: "",
+            receiverCity: "",
+            receiverDistrict: "",
+            selectPro: ["湖南省", "广东省", "浙江省"],
+            selectCity: [],
+            selectArea: [],
+            receiverAddress: "",
+            receiverZip: "",
+            command: "",
+            id: "",
+            tt: "aaa",
+        };
     },
-    methods:{
-        getAddress(){
-            this.axios.get('/shippings').then((res)=>{
-                this.addressList = res.list
-            })
+    methods: {
+        getAddress() {
+            this.axios.get("/shippings").then((res) => {
+                this.addressList = res.list;
+            });
         },
-        getProduct(){
-            this.axios.get('/carts').then((res)=>{
-                let product = res.cartProductVoList
-                this.cartTotalPrice = res.cartTotalPrice
-                for(let i =0 ;i < product.length ; i++){
-                    if(product[i].productSelected) {
-                        this.productList.push(product[i])
-                        this.cartTotalQuantity +=  product[i].quantity
+        getProduct() {
+            this.axios.get("/carts").then((res) => {
+                let product = res.cartProductVoList;
+                this.cartTotalPrice = res.cartTotalPrice;
+                for (let i = 0; i < product.length; i++) {
+                    if (product[i].productSelected) {
+                        this.productList.push(product[i]);
+                        this.cartTotalQuantity += product[i].quantity;
                     }
                 }
-            })
+            });
         },
         // 返回购物车
-        goback(){
-            this.$router.push('/cart')
+        goback() {
+            this.$router.push("/cart");
         },
         // 结算
-        submit(){
-            let id = this.selectedAddress.id
-            if(!id){
+        submit() {
+            let id = this.selectedAddress.id;
+            if (!id) {
                 this.$message({
-                    showClose:true,
-                    message:'请选择地址',
-                    type:'error',
-                    duration:1500
-                })
-            }else {
-                this.axios.post('/orders',{
-                    shippingId : id
-                }).then((res)=>{
-                    this.$router.push({
-                        path:'/order/pay',
-                        query:{
-                            orderNo:res.orderNo
-                        }
+                    showClose: true,
+                    message: "请选择地址",
+                    type: "error",
+                    duration: 1500,
+                });
+            } else {
+                this.axios
+                    .post("/orders", {
+                        shippingId: id,
                     })
-                    this.clear()
-                    this.selectedAddress = ''
-                    this.productList = []
-                    this.cartTotalPrice = 0
-                    this.cartTotalQuantity = 0
-                    this.addressNo = ''
-                    console.log(this.$route.path)
-                    
-                })
+                    .then((res) => {
+                        this.$router.push({
+                            path: "/order/pay",
+                            query: {
+                                orderNo: res.orderNo,
+                            },
+                        });
+                        this.clear();
+                        this.selectedAddress = "";
+                        this.productList = [];
+                        this.cartTotalPrice = 0;
+                        this.cartTotalQuantity = 0;
+                        this.addressNo = "";
+                        console.log(this.$route.path);
+                    });
             }
         },
         // 增加地址
-        commitAddress(command){
+        commitAddress(command) {
             let infoItem = {
-                'receiverName':this.receiverName, 
-                'receiverMobile':this.receiverMobile,
-                'receiverProvince':this.receiverProvince,
-                'receiverCity':this.receiverCity,
-                'receiverDistrict':this.receiverDistrict,
-                'receiverAddress':this.receiverAddress,
-                'receiverZip':this.receiverZip
-            }
-            let {receiverName,receiverMobile,receiverProvince,receiverCity,receiverDistrict,receiverAddress,receiverZip} = infoItem
-            let errMsg = ''
-            command = this.command
-            if(receiverName && receiverMobile && receiverProvince && receiverCity && receiverDistrict && receiverAddress && receiverZip){
-                let regName = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/
-                let regPhone = /^1[3456789]\d{9}$/
-                let regZip = /^[1-9][0-9]{5}$/
-                if(!regName.test(receiverName)){
-                    errMsg = '请填写合法名字'
-                }else if(!regPhone.test(receiverMobile)){
-                    errMsg = '请填写合法手机号码'
-                }else if(!receiverAddress){
-                    errMsg = '请填写详细地址'
-                }else if(!regZip.test(receiverZip)){
-                    errMsg = '请填写合法邮政编码'
+                receiverName: this.receiverName,
+                receiverMobile: this.receiverMobile,
+                receiverProvince: this.receiverProvince,
+                receiverCity: this.receiverCity,
+                receiverDistrict: this.receiverDistrict,
+                receiverAddress: this.receiverAddress,
+                receiverZip: this.receiverZip,
+            };
+            let {
+                receiverName,
+                receiverMobile,
+                receiverProvince,
+                receiverCity,
+                receiverDistrict,
+                receiverAddress,
+                receiverZip,
+            } = infoItem;
+            let errMsg = "";
+            command = this.command;
+            if (
+                receiverName &&
+                receiverMobile &&
+                receiverProvince &&
+                receiverCity &&
+                receiverDistrict &&
+                receiverAddress &&
+                receiverZip
+            ) {
+                let regName = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
+                let regPhone = /^1[3456789]\d{9}$/;
+                let regZip = /^[1-9][0-9]{5}$/;
+                if (!regName.test(receiverName)) {
+                    errMsg = "请填写合法名字";
+                } else if (!regPhone.test(receiverMobile)) {
+                    errMsg = "请填写合法手机号码";
+                } else if (!receiverAddress) {
+                    errMsg = "请填写详细地址";
+                } else if (!regZip.test(receiverZip)) {
+                    errMsg = "请填写合法邮政编码";
                 }
-                if(errMsg){
+                if (errMsg) {
                     this.$message({
-                        showClose:true,
+                        showClose: true,
                         message: errMsg,
-                        type:'error',
-                        duration:1500
-                    })
+                        type: "error",
+                        duration: 1500,
+                    });
                 }
-            }else{
-                errMsg = '请将信息填写完成'
+            } else {
+                errMsg = "请将信息填写完成";
                 this.$message({
-                    showClose:true,
-                    message:errMsg,
-                    type:'error',
-                    duration:1500
-                })
+                    showClose: true,
+                    message: errMsg,
+                    type: "error",
+                    duration: 1500,
+                });
             }
             // errMsg若为false 代表没有异常 可以发送增加地址请求
-            if(!errMsg){
-                if(command == ''){
-                    this.axios.post('/shippings',{
-                        receiverName,
-                        receiverMobile,
-                        receiverProvince,
-                        receiverCity,
-                        receiverDistrict,
-                        receiverAddress,
-                        receiverZip,
-                    }).then(()=>{
-                        this.getAddress()
-                        // 将地址信息清空
-                        this.clear()
-                        this.$message({
-                            showClose:true,
-                            message:'新增地址成功',
-                            type:'success',
-                            duration:1500
+            if (!errMsg) {
+                if (command == "") {
+                    this.axios
+                        .post("/shippings", {
+                            receiverName,
+                            receiverMobile,
+                            receiverProvince,
+                            receiverCity,
+                            receiverDistrict,
+                            receiverAddress,
+                            receiverZip,
                         })
-                    })
-                }else if(command == 'change'){
-                    this.axios.put(`/shippings/${this.id}`,{
-                        receiverName:this.receiverName, 
-                        receiverMobile:this.receiverMobile,
-                        receiverProvince:this.receiverProvince,
-                        receiverCity:this.receiverCity,
-                        receiverDistrict:this.receiverDistrict,
-                        receiverAddress:this.receiverAddress,
-                        receiverZip:this.receiverZip
-                    }).then(()=>{
-                        this.getAddress()
-                        this.id = ''
-                        this.command = ''
-                        // 将地址信息清空
-                        this.clear()
-                        this.$message({
-                            showClose:true,
-                            message:'修改地址成功',
-                            type:'success',
-                            duration:1500
+                        .then(() => {
+                            this.getAddress();
+                            // 将地址信息清空
+                            this.clear();
+                            this.$message({
+                                showClose: true,
+                                message: "新增地址成功",
+                                type: "success",
+                                duration: 1500,
+                            });
+                        });
+                } else if (command == "change") {
+                    this.axios
+                        .put(`/shippings/${this.id}`, {
+                            receiverName: this.receiverName,
+                            receiverMobile: this.receiverMobile,
+                            receiverProvince: this.receiverProvince,
+                            receiverCity: this.receiverCity,
+                            receiverDistrict: this.receiverDistrict,
+                            receiverAddress: this.receiverAddress,
+                            receiverZip: this.receiverZip,
                         })
-                    })
+                        .then(() => {
+                            this.getAddress();
+                            this.id = "";
+                            this.command = "";
+                            // 将地址信息清空
+                            this.clear();
+                            this.$message({
+                                showClose: true,
+                                message: "修改地址成功",
+                                type: "success",
+                                duration: 1500,
+                            });
+                        });
                 }
-                
             }
         },
         // 取消地址提交
-        cancelCommit(){
-            this.showModal = false
-            this.clear()
+        cancelCommit() {
+            this.showModal = false;
+            this.clear();
         },
-        choseAddress(target){
-            this.selectedAddress = target
-            this.addressNo = target.id
+        choseAddress(target) {
+            this.selectedAddress = target;
+            this.addressNo = target.id;
         },
-        modalstatus(status){
-            this.showModal = status
+        modalstatus(status) {
+            this.showModal = status;
         },
         // 修改地址
-        changeAddress(item){
-            this.receiverName = item.receiverName 
-            this.receiverMobile = item.receiverMobile
-            this.receiverProvince = item.receiverProvince
-            this.receiverCity = item.receiverCity
-            this.receiverDistrict = item.receiverDistrict
-            this.receiverAddress = item.receiverAddress 
-            this.receiverZip = item.receiverZip
-            this.showModal = true
-            this.command = 'change'
-            this.id = item.id
-            if(this.receiverProvince =='湖南省'){
-                this.selectCity = ["长沙市","岳阳市","湘潭市"]
-            }else if(this.receiverProvince =='广东省'){
-                this.selectCity = ["广州市","深圳市","佛山市"]
-            }else if(this.receiverProvince =='浙江省'){
-                this.selectCity = ["杭州市","宁波市","温州市"]
+        changeAddress(item) {
+            this.receiverName = item.receiverName;
+            this.receiverMobile = item.receiverMobile;
+            this.receiverProvince = item.receiverProvince;
+            this.receiverCity = item.receiverCity;
+            this.receiverDistrict = item.receiverDistrict;
+            this.receiverAddress = item.receiverAddress;
+            this.receiverZip = item.receiverZip;
+            this.showModal = true;
+            this.command = "change";
+            this.id = item.id;
+            if (this.receiverProvince == "湖南省") {
+                this.selectCity = ["长沙市", "岳阳市", "湘潭市"];
+            } else if (this.receiverProvince == "广东省") {
+                this.selectCity = ["广州市", "深圳市", "佛山市"];
+            } else if (this.receiverProvince == "浙江省") {
+                this.selectCity = ["杭州市", "宁波市", "温州市"];
             }
-            
-            if(this.receiverCity == "长沙市"){
-                this.selectArea = ["开福区","芙蓉区","天心区"]
-            }else if(this.receiverCity == "岳阳市"){
-                this.selectArea = ["岳阳楼区","君山区","云溪区"]
-            }else if(this.receiverCity == "湘潭市"){
-                this.selectArea = ["雨湖区","岳塘区","韶山市"]
-            }else if(this.receiverCity == "广州市"){
-                this.selectArea = ["白云区","天河区","黄浦区"]
-            }else if(this.receiverCity == "深圳市"){
-                this.selectArea = ["宝安区","南山区","福田区"]
-            }else if(this.receiverCity == "佛山市"){
-                this.selectArea = ["三水区","南海区","高明区"]
-            }else if(this.receiverCity == "杭州市"){
-                this.selectArea = ["西湖区","滨江区","富阳区"]
-            }else if(this.receiverCity == "宁波市"){
-                this.selectArea = ["奉化区","江北区","北仑区"]
-            }else if(this.receiverCity == "温州市"){
-                this.selectArea = ["洞头区","龙湾区","鹿城区"]
+
+            if (this.receiverCity == "长沙市") {
+                this.selectArea = ["开福区", "芙蓉区", "天心区"];
+            } else if (this.receiverCity == "岳阳市") {
+                this.selectArea = ["岳阳楼区", "君山区", "云溪区"];
+            } else if (this.receiverCity == "湘潭市") {
+                this.selectArea = ["雨湖区", "岳塘区", "韶山市"];
+            } else if (this.receiverCity == "广州市") {
+                this.selectArea = ["白云区", "天河区", "黄浦区"];
+            } else if (this.receiverCity == "深圳市") {
+                this.selectArea = ["宝安区", "南山区", "福田区"];
+            } else if (this.receiverCity == "佛山市") {
+                this.selectArea = ["三水区", "南海区", "高明区"];
+            } else if (this.receiverCity == "杭州市") {
+                this.selectArea = ["西湖区", "滨江区", "富阳区"];
+            } else if (this.receiverCity == "宁波市") {
+                this.selectArea = ["奉化区", "江北区", "北仑区"];
+            } else if (this.receiverCity == "温州市") {
+                this.selectArea = ["洞头区", "龙湾区", "鹿城区"];
             }
         },
-        delAddress(shippingId){
-            this.axios.delete(`/shippings/${shippingId}`,{
-                params:{
-                    shippingId
-                }
-            }).then(()=>{
-                this.getAddress()
-                this.selectedAddress = ''
-            })
+        delAddress(shippingId) {
+            this.axios
+                .delete(`/shippings/${shippingId}`, {
+                    params: {
+                        shippingId,
+                    },
+                })
+                .then(() => {
+                    this.getAddress();
+                    this.selectedAddress = "";
+                });
             this.$message({
-                showClose:true,
-                message:'删除成功',
-                type:'success',
-                duration:1500
-            })
+                showClose: true,
+                message: "删除成功",
+                type: "success",
+                duration: 1500,
+            });
         },
         // 将所有地址信息置为空
-        clear(){
-            this.showModal = false
-            this.receiverName = ''
-            this.receiverMobile = ''
-            this.receiverProvince = ''
-            this.receiverCity = ''
-            this.receiverDistrict = ''
-            this.receiverAddress = ''
-            this.receiverZip = ''
+        clear() {
+            this.showModal = false;
+            this.receiverName = "";
+            this.receiverMobile = "";
+            this.receiverProvince = "";
+            this.receiverCity = "";
+            this.receiverDistrict = "";
+            this.receiverAddress = "";
+            this.receiverZip = "";
         },
-        iconClose(){
-            this.clear()
+        iconClose() {
+            this.clear();
         },
         changeProvince,
-        changeCity
+        changeCity,
     },
-    mounted(){
-        this.getAddress()
-        this.getProduct()
-    }
-}
+    mounted() {
+        this.getAddress();
+        this.getProduct();
+    },
+};
 </script>
 
-<style lang="scss">
-    .confirm{
-        background: #f5f5f5;
-        padding: 40px 0;
-        .container{
-            width: 1178px;
-            padding: 48px 24px 24px ;
-            margin: auto;
-            background-color: #fff;
-            .address-wrapper{
+<style lang="scss" scoped>
+.confirm {
+    background: #f5f5f5;
+    padding: 40px 0;
+    .container {
+        width: 1178px;
+        padding: 48px 24px 24px;
+        margin: auto;
+        background-color: #fff;
+        .address-wrapper {
+            margin-bottom: 20px;
+            .title {
+                color: #333;
+                font-size: 18px;
+                line-height: 20px;
                 margin-bottom: 20px;
-                .title{
-                    color: #333;
-                    font-size: 18px;
-                    line-height: 20px;
+            }
+            .address-container-list {
+                .addres-wrapper-item {
+                    float: left;
+                    margin-right: 17px;
                     margin-bottom: 20px;
-                }
-                .address-container-list{
-                    .addres-wrapper-item{
-                        float: left;
-                        margin-right: 17px;
-                        margin-bottom: 20px;
-                        border: 1px solid #e0e0e0;
-                        width: 268px;
-                        transition: border-color .3s;
-                        cursor: pointer;
-                        .iconfont{
-                            font-size: 0px;
+                    border: 1px solid #e0e0e0;
+                    width: 268px;
+                    transition: border-color 0.3s;
+                    cursor: pointer;
+                    .iconfont {
+                        font-size: 0px;
+                    }
+                    &.checked {
+                        border-color: #ff6700;
+                        .iconfont {
+                            font-size: 27px;
+                            // visibility:visible;
                         }
-                        &.checked{
+                        &:hover {
                             border-color: #ff6700;
-                            .iconfont{
-                                font-size: 27px;
-                                // visibility:visible;
-                            }
-                            &:hover{
-                                border-color: #ff6700;
+                        }
+                    }
+                    .address-top {
+                        padding: 15px 24px 0;
+                        height: 106px;
+                        color: #757575;
+                        line-height: 22px;
+                        .name {
+                            font-size: 18px;
+                            color: #333;
+                            line-height: 30px;
+                            margin-bottom: 10px;
+                        }
+                        .address-detail {
+                            font-size: 14px;
+                            span {
+                                display: inline-block;
+                                margin-right: 3px;
+                                overflow-wrap: break-word;
                             }
                         }
-                        .address-top{
-                            padding: 15px 24px 0;
-                            height: 106px;
+                    }
+                    .option-wrapper {
+                        height: 57px;
+                        position: relative;
+                        .iconfont {
+                            // font-size: 27px;
                             color: #757575;
-                            line-height: 22px;
-                            .name{
-                                font-size: 18px;
-                                color: #333;
-                                line-height: 30px;
-                                margin-bottom: 10px;
-                            }
-                            .address-detail{
-                                font-size: 14px;
-                                span{
-                                    display: inline-block;
-                                    margin-right: 3px;
-                                    overflow-wrap: break-word;
-                                }
+                            cursor: pointer;
+                            &:hover {
+                                color: #ff6700;
                             }
                         }
-                        .option-wrapper{
-                            height: 57px;
-                            position: relative;
-                            .iconfont{
-                                // font-size: 27px;
-                                color: #757575;
-                                cursor: pointer;
-                                &:hover{
-                                    color: #ff6700;
-                                }
-                            }
-                            .change{
-                                position: absolute;
-                                left: 0;
-                                margin-left: 20px;
-                                margin-top: 12px;
-                            }
-                            .del{
-                                position: absolute;
-                                right: 0;
-                                margin-right: 20px;
-                                margin-top: 12px;
-                            }
+                        .change {
+                            position: absolute;
+                            left: 0;
+                            margin-left: 20px;
+                            margin-top: 12px;
                         }
-                        &:hover{
-                            border-color: #b0b0b0;
-                            transition: border-color .3s;
+                        .del {
+                            position: absolute;
+                            right: 0;
+                            margin-right: 20px;
+                            margin-top: 12px;
                         }
                     }
-                    .add-address-wrapper{
-                        float: left;
-                        margin-right: 17px;
-                        margin-bottom: 20px;
-                        border: 1px solid #e0e0e0;
-                        width: 268px;
-                        height: 178px;
-                        display: flex;
-                        flex-direction:column;
-                        justify-content: center;
-                        align-items: center;
-                        cursor: pointer;
-                        color: #b0b0b0;
-                        transition: border-color .3s;
-                        .icon-wrapper{
-                            width: 30px;
-                            height: 30px;
-                            background-color: #e0e0e0;
-                            border-radius: 100%;
-                            position: relative;
-                            margin-bottom: 5px;
-                            transition: background-color .3s;
-                            .iconfont{
-                                position: absolute;
-                                color: #fff;
-                                left: 4px;
-                                top: 3px;
-                                font-size: 22px;
-                            }
-                        }
-                        &:hover{
-                            border-color: #b0b0b0;
-                            .icon-wrapper{
-                                background-color: #b0b0b0;
-                            }
-                            transition: border-color .3s , background-color .3s;
-                        }
-                    }
-                    &::after{
-                        content: '';
-                        display: block;
-                        clear: both;
+                    &:hover {
+                        border-color: #b0b0b0;
+                        transition: border-color 0.3s;
                     }
                 }
-            }
-            .goods-wrapper{
-                border-bottom: 1px solid #e0e0e0;
-                .title{
-                    color: #333;
-                    font-size: 18px;
-                    line-height: 20px;
+                .add-address-wrapper {
+                    float: left;
+                    margin-right: 17px;
                     margin-bottom: 20px;
-                }
-                .goods-list{
-                    .goods-item{
+                    border: 1px solid #e0e0e0;
+                    width: 268px;
+                    height: 178px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    color: #b0b0b0;
+                    transition: border-color 0.3s;
+                    .icon-wrapper {
+                        width: 30px;
                         height: 30px;
-                        padding: 15px 0;
-                    }
-                    .box{
-                        height: 30px;
-                        line-height: 30px;
-                        float: left;
-                        color: #424242;
-                        font-size: 14px;
-                    }
-                    .img-wrapper{
-                        margin-right: 10px;
-                        img{
-                            width: 30px;
-                            height: 30px;
+                        background-color: #e0e0e0;
+                        border-radius: 100%;
+                        position: relative;
+                        margin-bottom: 5px;
+                        transition: background-color 0.3s;
+                        .iconfont {
+                            position: absolute;
+                            color: #fff;
+                            left: 4px;
+                            top: 3px;
+                            font-size: 22px;
                         }
                     }
-                    .desc-wrapper{
-                        width: 650px;
-                    }
-                    .price-wrapper{
-                        width: 115px;
-                        text-align: right;
-                    }
-                    .price-total-wrapper{
-                        width: 290px;
-                        color: #ff6700;
-                        text-align: right;
-                    }
-                    &::after{
-                        content: '';
-                        display: block;
-                        clear: both;
-                    }
-                }
-            }
-            .sendways-wrapper{
-                padding: 25px 0;
-                border-bottom: 1px solid #e0e0e0;
-                height: 46px;
-                line-height: 46px;
-                &:nth-child(2n){
-                    border: none;
-                }
-                .title{
-                    display: inline-block;
-                    width: 150px;
-                    height: 46px;
-                    font-size: 18px;
-                }
-                .detail{
-                    display: inline-block;
-                    font-size: 14px;
-                    height: 46px;
-                    color: #ff6700;
-                }
-            }
-            .order-detaip-wrapper{
-                padding: 20px 0;
-                margin: 0 48px;
-                .detail-container{
-                    float: right;
-                    font-size: 14px;
-                    text-align: right;
-                    color: #757575;
-                    .left{
-                        width: 126px;
-                    }
-                    .right{
-                        width: 65px;
-                        color: #ff6700;
-                    }
-                    .box{
-                        display: inline-block;
-                    }
-                    .size{
-                        height: 28px;
-                        line-height: 28px;
-                        p{
-                            height: 28px;
+                    &:hover {
+                        border-color: #b0b0b0;
+                        .icon-wrapper {
+                            background-color: #b0b0b0;
                         }
+                        transition: border-color 0.3s, background-color 0.3s;
                     }
                 }
-                &::after{
+                &::after {
                     content: "";
                     display: block;
                     clear: both;
                 }
             }
         }
-        .check-wrapper{
-            width: 1130px;
-            height: 40px;
-            margin: auto;
-            padding: 20px 48px;
-            background-color: #fff;
-            border-top: 2px solid #f5f5f5;
-            .left{
-                float: left;
-                height: 40px;
-                font-size: 14px;
+        .goods-wrapper {
+            border-bottom: 1px solid #e0e0e0;
+            .title {
+                color: #333;
+                font-size: 18px;
+                line-height: 20px;
+                margin-bottom: 20px;
             }
-            .right{
-                float: right;
-                height: 40px;
-                p{
-                    display: inline-block;
-                    margin-left: 40px;
-                    height: 40px;
-                    text-align: center;
-                    line-height: 40px;
-                    width: 158px;
+            .goods-list {
+                .goods-item {
+                    height: 30px;
+                    padding: 15px 0;
+                }
+                .box {
+                    height: 30px;
+                    line-height: 30px;
+                    float: left;
+                    color: #424242;
                     font-size: 14px;
-                    cursor: pointer;
                 }
-                .back{
-                    color: #b0b0b0;
-                    border: 1px solid rgb(176, 176, 176);;
+                .img-wrapper {
+                    margin-right: 10px;
+                    img {
+                        width: 30px;
+                        height: 30px;
+                    }
                 }
-                .submit{
-                    color: #fff;
-                    background-color: #ff6700;
-                    border: 1px solid #ff6700;
+                .desc-wrapper {
+                    width: 650px;
                 }
-            }
-            &::after{
-                content: '';
-                clear: both;
-                display: block;
+                .price-wrapper {
+                    width: 115px;
+                    text-align: right;
+                }
+                .price-total-wrapper {
+                    width: 290px;
+                    color: #ff6700;
+                    text-align: right;
+                }
+                &::after {
+                    content: "";
+                    display: block;
+                    clear: both;
+                }
             }
         }
-        .edit-wrapper{
-            .user-group{
-                margin-bottom: 14px;
-                .wrapper{
+        .sendways-wrapper {
+            padding: 25px 0;
+            border-bottom: 1px solid #e0e0e0;
+            height: 46px;
+            line-height: 46px;
+            &:nth-child(2n) {
+                border: none;
+            }
+            .title {
+                display: inline-block;
+                width: 150px;
+                height: 46px;
+                font-size: 18px;
+            }
+            .detail {
+                display: inline-block;
+                font-size: 14px;
+                height: 46px;
+                color: #ff6700;
+            }
+        }
+        .order-detaip-wrapper {
+            padding: 20px 0;
+            margin: 0 48px;
+            .detail-container {
+                float: right;
+                font-size: 14px;
+                text-align: right;
+                color: #757575;
+                .left {
+                    width: 126px;
+                }
+                .right {
+                    width: 65px;
+                    color: #ff6700;
+                }
+                .box {
                     display: inline-block;
-                    width: 303px;
-                    height: 40px;
-                    input{
-                        display: block;
-                        width: 269px;
-                        border: 1px solid #e0e0e0;
-                        padding: 10px 16px;
-                    }
-                    &:nth-child(2n-1){
-                        margin-right: 14px;
+                }
+                .size {
+                    height: 28px;
+                    line-height: 28px;
+                    p {
+                        height: 28px;
                     }
                 }
             }
-            .pro-city{
-                margin-bottom: 14px;
-                select{
-                    display: inline-block;
-                    width: 101px;
-                    height: 30px;
-                    margin-right: 20px;
-                    border-color: #e0e0e0;
-                    cursor: pointer;
-                }
+            &::after {
+                content: "";
+                display: block;
+                clear: both;
             }
-            .textarea{
-                margin-bottom: 14px;
-                textarea{
-                    width: 400px;
-                    border-color: #e0e0e0;
-                }
+        }
+    }
+    .check-wrapper {
+        width: 1130px;
+        height: 40px;
+        margin: auto;
+        padding: 20px 48px;
+        background-color: #fff;
+        border-top: 2px solid #f5f5f5;
+        .left {
+            float: left;
+            height: 40px;
+            font-size: 14px;
+        }
+        .right {
+            float: right;
+            height: 40px;
+            p {
+                display: inline-block;
+                margin-left: 40px;
+                height: 40px;
+                text-align: center;
+                line-height: 40px;
+                width: 158px;
+                font-size: 14px;
+                cursor: pointer;
             }
-            .postcode{
-                input{
+            .back {
+                color: #b0b0b0;
+                border: 1px solid rgb(176, 176, 176);
+            }
+            .submit {
+                color: #fff;
+                background-color: #ff6700;
+                border: 1px solid #ff6700;
+            }
+        }
+        &::after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+    }
+    .edit-wrapper {
+        .user-group {
+            margin-bottom: 14px;
+            .wrapper {
+                display: inline-block;
+                width: 303px;
+                height: 40px;
+                input {
                     display: block;
                     width: 269px;
                     border: 1px solid #e0e0e0;
                     padding: 10px 16px;
                 }
+                &:nth-child(2n-1) {
+                    margin-right: 14px;
+                }
+            }
+        }
+        .pro-city {
+            margin-bottom: 14px;
+            select {
+                display: inline-block;
+                width: 101px;
+                height: 30px;
+                margin-right: 20px;
+                border-color: #e0e0e0;
+                cursor: pointer;
+            }
+        }
+        .textarea {
+            margin-bottom: 14px;
+            textarea {
+                width: 400px;
+                border-color: #e0e0e0;
+            }
+        }
+        .postcode {
+            input {
+                display: block;
+                width: 269px;
+                border: 1px solid #e0e0e0;
+                padding: 10px 16px;
             }
         }
     }
-    
+}
 </style>

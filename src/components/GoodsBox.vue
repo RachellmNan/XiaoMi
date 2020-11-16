@@ -148,7 +148,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss"  scoped>
     .GoodBox{
         background-color: whitesmoke;
         .title{

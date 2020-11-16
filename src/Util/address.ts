@@ -1,11 +1,14 @@
 export function changeProvince(item:string):void {
     if(item == "湖南省"){
+        
         this.selectCity = ["长沙市","岳阳市","湘潭市"]
     }else if(item == "广东省"){
         this.selectCity = ["广州市","深圳市","佛山市"]
     }else if(item == "浙江省"){
         this.selectCity = ["杭州市","宁波市","温州市"]
     }
+    this.receiverCity = ''
+    this.receiverDistrict = ''
     this.selectArea = []
 }
 
@@ -29,5 +32,6 @@ export function changeCity(item:string):void {
     }else if(item == "温州市"){
         this.selectArea = ["洞头区","龙湾区","鹿城区"]
     }
+    this.receiverDistrict = ''
 }
 
