@@ -31,7 +31,7 @@
                     </div>
                     <div class="pro-city">
                         <!-- 用ant design开发-->
-                        <a-select v-model="receiverProvince" @change="changeProvince" style="width: 140px">
+                        <!-- <a-select v-model="receiverProvince" @change="changeProvince" style="width: 140px">
                             <a-select-option value="" disabled>--请选择省份--</a-select-option>
                             <a-select-option 
                                 v-for="(item, index) of selectPro" 
@@ -57,10 +57,10 @@
                                 :key="index">
                                 {{ item }}
                             </a-select-option>
-                        </a-select>
+                        </a-select> -->
 
                         <!-- 使用ts开发的省市区切换-->
-                        <!-- <select name="province" id="province" v-model="receiverProvince" @change="changeProvince(receiverProvince)">
+                        <select name="province" id="province" v-model="receiverProvince" @change="changeProvince(receiverProvince)">
                             <option value='' disabled="true">--请选择省份--</option>
                             <option v-for="(item,index) of selectPro" :value="item" :key="index">{{item}}</option>
                         </select>
@@ -71,7 +71,7 @@
                         <select name="area" id="area" v-model="receiverDistrict">
                             <option value='' disabled="true">--请选择区域--</option>
                             <option v-for="(item,index) of selectArea" :value="item" :key="index">{{item}}</option>
-                        </select> -->
+                        </select>
                     </div>
                     <div class="textarea">
                         <textarea
@@ -220,12 +220,11 @@
 <script>
 import Modal from "../components/Modal";
 import { changeProvince, changeCity } from "../Util/address.ts";
-import { Select } from 'ant-design-vue';
-import Vue from 'vue'
-Vue.component(Select.name, Select)
-Vue.component(Select.Option.name, Select.Option)
-// import 'ant-design-vue/lib/select/style/css';
-import 'ant-design-vue/dist/antd.css';
+// import { Select } from 'ant-design-vue';
+// import Vue from 'vue'
+// Vue.component(Select.name, Select)
+// Vue.component(Select.Option.name, Select.Option)
+// import 'ant-design-vue/dist/antd.css';
 
 export default {
     name: "confirm",
