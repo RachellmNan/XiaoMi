@@ -51,6 +51,24 @@ export default {
     },
     mounted(){
         this.changeText(this.path)
+        console.log('orderMounted')
+    },
+    beforeRouteEnter(to,from,next){
+        console.log('orderEnter',to,from)
+        next()
+    },
+    beforeRouteUpdate(to,from,next){
+        console.log('OrderUpdate',to,from)
+        next()
+    },
+    beforeCreate(){
+        console.log('orderCreate')
+    },
+    created(){
+        console.log('ordercreated')
+    },
+    beforeMount(){
+        console.log('orderBeforeMount')
     }
 }
 </script>

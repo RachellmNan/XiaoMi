@@ -7,7 +7,7 @@ import Login from './pages/login.vue'
 import Detail from './pages/detail.vue'
 import Cart from './pages/cart.vue'
 import Order from './pages/order.vue'
-import Confirm from './pages/confirm.vue'
+// import Confirm from './pages/confirm.vue'
 import Pay from './pages/pay.vue'
 import OrderList from './pages/orderList.vue'
 import Register from './pages/register.vue'
@@ -49,18 +49,28 @@ export default new Router({
         path:'/order',
         name:'order',
         component:Order,
+        meta:'order',
+        // redirect:'/order/list',
         children:[{
             path:'confirm',
             name:'confirm',
-            component:Confirm
+            component:()=>import('./pages/confirm.vue'),
+            meta:'confirm',
         },{
             path:'pay',
             name:'pay',
-            component:Pay
+            component:Pay,
+            meta:'pay'
         },{
-            path:'List',
+            path:'/order/List',
             name:'OrderList',
-            component:OrderList
+            component:OrderList,
+            meta:'list'
         }]
-    }]
+    }],
+    
+    // scrollBehavior (to, from, savedPosition) {
+    //     console.log(to,from,savedPosition)
+    //     return { x: 0, y: 40 }
+    //   }
 })

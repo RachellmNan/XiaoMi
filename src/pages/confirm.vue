@@ -295,11 +295,13 @@ export default {
                     })
                     .then((res) => {
                         this.$router.push({
-                            path: "/order/pay",
+                            // path: "/order/pay",
+                            name:'pay',
                             query: {
                                 orderNo: res.orderNo,
                             },
                         });
+
                         this.clear();
                         this.selectedAddress = "";
                         this.productList = [];
@@ -511,7 +513,26 @@ export default {
     mounted() {
         this.getAddress();
         this.getProduct();
+        console.log('ConfirmMounted'),
+        console.log('a',this)
     },
+    beforeRouteEnter(to,from,next){
+        console.log('confirmEnter',to,from)
+        next()
+    },
+    beforeRouteUpdate(to,from,next){
+        console.log('confirmUpdate',to,from)
+        next()
+    },
+    beforeCreate(){
+        console.log('confirmCreate')
+    },
+    created(){
+        console.log('confirmcreated')
+    },
+    beforeMount(){
+        console.log('confirmBeforeMount')
+    }
 };
 </script>
 

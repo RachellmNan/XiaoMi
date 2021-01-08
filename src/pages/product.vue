@@ -105,6 +105,9 @@ export default {
     },
     beforeMount(){
         this.getProductDetail()
+    },
+    mounted(){
+        console.log(this.$route)
     }
 }
 </script>

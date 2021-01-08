@@ -123,6 +123,24 @@ export default {
 
     mounted(){
         this.getOrderList()
+        console.log('listMounted')
+    },
+    beforeRouteEnter(to,from,next){
+        console.log('listEnter',to,from)
+        next()
+    },
+    beforeRouteUpdate(to,from,next){
+        console.log('ListUpdate',to,from)
+        next()
+    },
+        beforeCreate(){
+        console.log('listCreate')
+    },
+    created(){
+        console.log('listcreated')
+    },
+    beforeMount(){
+        console.log('listBeforeMount')
     }
 }
 </script>

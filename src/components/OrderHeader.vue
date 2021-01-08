@@ -27,13 +27,17 @@ export default {
     name:'OrderHeader',
     methods:{
         goOrder(){
-            if(this.$route.hashpath != '#/order/list') this.$router.push('/order/list')
+            if(window.location.hash != '#/order/list') this.$router.push('/order/list')
         }
     },
     computed:{
         user(){
             return this.$store.state.username
         }
+    },
+    mounted(){
+        console.log(this.$route)
+        console.log(window.location.hash)
     }
 }
 </script>

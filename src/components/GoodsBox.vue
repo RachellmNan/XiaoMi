@@ -139,7 +139,8 @@ export default {
             }  
         },
         gobyRouter(id){
-            this.$router.push('/product/'+id)
+            // this.$router.push('/product/'+id)
+            this.$router.push({name:'product',params:{id}})
         }
     },
     mounted(){
